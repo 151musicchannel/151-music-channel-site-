@@ -14,6 +14,8 @@ const routes = require("./src/routes");
 const aide = require("./src/aide");
 
 const app = express();
+// Numéro de version des fichiers de style et de script (nouveau à chaque redémarrage du site)
+const VERSION = Date.now().toString(36);
 const PORT = Number(process.env.PORT) || 8151;
 const SITE_URL = (process.env.SITE_URL || `http://localhost:${PORT}`).replace(/\/$/, "");
 
@@ -72,6 +74,7 @@ app.use((req, res, next) => {
   res.locals.cheminActuel = req.path;
   res.locals.annee = new Date().getFullYear();
   res.locals.aide = aide;
+  res.locals.v = VERSION; // change à chaque mise en ligne : force les navigateurs à recharger style et scripts
   next();
 });
 
