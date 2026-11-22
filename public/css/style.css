@@ -237,7 +237,7 @@ html { scroll-padding-top: calc(var(--entete) + 16px); }
   color: #fff;
   transition: opacity .25s;
 }
-.lecteur.inactif .commandes { opacity: 0; pointer-events: none; }
+.lecteur.inactif .commandes { opacity: 0; }
 .progression { height: 4px; margin: 0 4px 4px; background: rgba(255, 255, 255, .25); border-radius: 2px; overflow: hidden; }
 .progression__barre { height: 100%; background: var(--vert); }
 .commandes__ligne { display: flex; align-items: center; gap: 2px; height: 46px; }
@@ -884,4 +884,15 @@ html { scroll-padding-top: calc(var(--entete) + 16px); }
 }
 .accueil.cinema .a-l-antenne { max-width: none; padding-inline: var(--gouttiere); }
 /* Sur téléphone, le lecteur prend déjà toute la largeur : le plein écran suffit */
-@media (max-width: 720px) { .cmd--cinema { display: none; } }
+
+
+/* =========================================================
+   « En ce moment / À suivre » centré sous le lecteur
+   ========================================================= */
+.a-l-antenne {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+  margin-left: auto; margin-right: auto;
+}
+.a-l-antenne__bloc { flex: 1 1 320px; max-width: 560px; text-align: center; }
+.a-l-antenne__label { justify-content: center; }
+.a-l-antenne__bloc--maintenant { border-left: 1px solid var(--bordure); border-top: 4px solid var(--vert); }

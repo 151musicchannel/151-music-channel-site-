@@ -118,7 +118,12 @@
     video.volume = Number(curseur.value);
     video.muted = video.volume === 0;
   });
-  video.addEventListener("click", basculer);
+  // Si les commandes sont cachées, le premier clic les fait réapparaître
+  // (au lieu de mettre la vidéo en pause par surprise), comme sur YouTube
+  video.addEventListener("click", () => {
+    if (lecteur.classList.contains("inactif")) { reveiller(); return; }
+    basculer();
+  });
   video.addEventListener("dblclick", pleinEcran);
 
   function pleinEcran() {
@@ -142,7 +147,14 @@
     try { localStorage.setItem("151-cinema", actif ? "1" : "0"); } catch (e) {}
   }
   const basculerCinema = () => {
+    // Sur téléphone, le lecteur fait déjà toute la largeur : « Agrandir » passe en plein écran
+    if (window.matchMedia("(max-width: 720px)").matches) {
+      pleinEcran();
+      try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (e) {}
+      return;
+    }
     cinema(!section.classList.contains("cinema"));
+    reveiller();
     lecteur.scrollIntoView({ block: "start", behavior: "smooth" });
   };
   btnCinema.addEventListener("click", basculerCinema);
