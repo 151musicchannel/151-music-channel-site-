@@ -126,11 +126,38 @@
   });
   video.addEventListener("dblclick", pleinEcran);
 
+  /* Plein écran, comme sur YouTube.
+     Chaque navigateur a sa méthode : on essaie dans l'ordre, et si l'une
+     est refusée on passe à la suivante (au lieu d'échouer sans rien dire). */
+  const elementPleinEcran = () => document.fullscreenElement || document.webkitFullscreenElement;
   function pleinEcran() {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else if (lecteur.requestFullscreen) lecteur.requestFullscreen();
-    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iPhone
+    if (elementPleinEcran()) {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      return;
+    }
+    const essais = [
+      () => lecteur.requestFullscreen && lecteur.requestFullscreen({ navigationUI: "hide" }), // Chrome, Edge, Firefox, Android
+      () => !lecteur.requestFullscreen && lecteur.webkitRequestFullscreen && (lecteur.webkitRequestFullscreen(), true), // anciens Safari / Samsung
+      () => video.requestFullscreen && video.requestFullscreen(),                              // la vidéo seule
+      () => video.webkitEnterFullscreen && (video.webkitEnterFullscreen(), true),             // iPhone
+    ];
+    (function essayer(i) {
+      if (i >= essais.length) return;
+      let resultat;
+      try { resultat = essais[i](); } catch (e) { return essayer(i + 1); }
+      if (resultat === undefined || resultat === false) return essayer(i + 1);
+      if (resultat && typeof resultat.catch === "function") resultat.catch(() => essayer(i + 1));
+    })(0);
   }
+  // L'icône change quand on entre ou sort du plein écran (y compris avec la touche Échap)
+  ["fullscreenchange", "webkitfullscreenchange"].forEach((ev) =>
+    document.addEventListener(ev, () => {
+      const actif = !!elementPleinEcran();
+      lecteur.classList.toggle("plein-ecran", actif);
+      $("btnPleinEcran").setAttribute("aria-label", actif ? "Quitter le plein écran" : "Plein écran");
+      reveiller();
+    })
+  );
   $("btnPleinEcran").addEventListener("click", pleinEcran);
   $("btnReessayer").addEventListener("click", demarrer);
 

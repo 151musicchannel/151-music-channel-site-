@@ -896,3 +896,14 @@ html { scroll-padding-top: calc(var(--entete) + 16px); }
 .a-l-antenne__bloc { flex: 1 1 320px; max-width: 560px; text-align: center; }
 .a-l-antenne__label { justify-content: center; }
 .a-l-antenne__bloc--maintenant { border-left: 1px solid var(--bordure); border-top: 4px solid var(--vert); }
+
+/* =========================================================
+   PLEIN ÉCRAN (tous navigateurs, y compris Safari / Samsung)
+   ========================================================= */
+.lecteur.plein-ecran {
+  max-width: none !important; width: 100% !important; height: 100% !important;
+  aspect-ratio: auto; border-radius: 0; box-shadow: none; background: #000;
+}
+.lecteur.plein-ecran .ico-plein { display: none; }
+.lecteur.plein-ecran .ico-sortir { display: block; }
+.lecteur:-webkit-full-screen { width: 100%; height: 100%; max-width: none; border-radius: 0; }
