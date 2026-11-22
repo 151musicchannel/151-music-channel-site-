@@ -1,0 +1,23 @@
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">À l'antenne</p>
+    <h1 class="bandeau__titre">Programmes</h1>
+    <p class="bandeau__texte">Découvrez les émissions de 151 Music Channel. Horaires indiqués en heure locale de la chaîne (<%= site.fuseauLibelle %>).</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <% if (programmes.length) { %>
+      <div class="grille grille--3">
+        <% programmes.forEach((programme) => { %><%- include('../partials/carte-programme', { programme }) %><% }) %>
+      </div>
+    <% } else { %>
+      <p class="vide">Les programmes seront bientôt présentés ici.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

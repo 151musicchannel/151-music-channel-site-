@@ -1,0 +1,25 @@
+{
+  "name": "151-music-channel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site officiel de 151 Music Channel",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "direct": "node scripts/direct-local.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "compression": "^1.8.2",
+    "dotenv": "^18.0.10",
+    "ejs": "^7.0.2",
+    "express": "^4.22.3",
+    "express-rate-limit": "^8.7.4",
+    "helmet": "^8.3.0",
+    "hls.js": "^1.7.4",
+    "nodemailer": "^10.6.0"
+  }
+}

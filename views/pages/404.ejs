@@ -1,0 +1,14 @@
+<%- include('../partials/debut') %>
+
+<section class="section page-erreur">
+  <div class="conteneur conteneur--etroit">
+    <p class="page-erreur__code"><%= typeof erreurServeur !== 'undefined' ? '500' : '404' %></p>
+    <h1 class="bandeau__titre"><%= typeof erreurServeur !== 'undefined' ? 'Une erreur est survenue' : 'Page introuvable' %></h1>
+    <p class="bandeau__texte">
+      <%= typeof erreurServeur !== 'undefined' ? "Réessayez dans quelques instants." : "La page que vous cherchez n'existe pas ou a été déplacée." %>
+    </p>
+    <a class="bouton" href="/">Retour à l'accueil</a>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

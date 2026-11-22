@@ -1,0 +1,49 @@
+<% const ap = site.aPropos; %>
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">La chaîne</p>
+    <h1 class="bandeau__titre">À propos de <%= site.nom %></h1>
+    <p class="bandeau__texte bandeau__texte--large"><%= ap.intro %></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur apropos">
+    <div class="apropos__bloc apropos__bloc--large">
+      <h2 class="titre-section">Notre histoire</h2>
+      <p><%= ap.histoire %></p>
+    </div>
+    <div class="apropos__bloc">
+      <p class="apropos__icone" aria-hidden="true">01</p>
+      <h2 class="apropos__titre">Mission</h2>
+      <p><%= ap.mission %></p>
+    </div>
+    <div class="apropos__bloc">
+      <p class="apropos__icone" aria-hidden="true">02</p>
+      <h2 class="apropos__titre">Vision</h2>
+      <p><%= ap.vision %></p>
+    </div>
+    <div class="apropos__bloc">
+      <p class="apropos__icone" aria-hidden="true">03</p>
+      <h2 class="apropos__titre">Positionnement</h2>
+      <p><%= ap.positionnement %></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--teinte">
+  <div class="conteneur">
+    <h2 class="titre-section">Nos objectifs</h2>
+    <ul class="objectifs">
+      <% ap.objectifs.forEach((o) => { %><li><%= o %></li><% }) %>
+    </ul>
+    <div class="appel">
+      <p>Un projet, un partenariat ou une demande presse ?</p>
+      <a class="bouton" href="/contact">Contacter l'équipe</a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

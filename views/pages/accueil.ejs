@@ -1,0 +1,199 @@
+<%
+  const direct = site.direct || {};
+  const fluxDispo = !!direct.url;
+  const scripts = [];
+  if (fluxDispo && direct.type === "hls") scripts.push("/vendor/hls.light.min.js");
+  if (fluxDispo) scripts.push("/js/lecteur.js");
+  scripts.push("/js/accueil.js");
+%>
+<%- include('../partials/debut') %>
+
+<!-- ============ LE DIRECT ============ -->
+<section class="accueil" id="direct" aria-labelledby="titreDirect">
+  <div class="conteneur">
+    <div class="accueil__tete">
+      <p class="sur-titre">Chaîne de télévision musicale</p>
+      <h1 class="accueil__titre" id="titreDirect">151 Music Channel en direct</h1>
+    </div>
+
+    <% if (fluxDispo) { %>
+    <div class="lecteur" id="lecteur" tabindex="-1" data-type="<%= direct.type %>" data-url="<%= direct.url %>">
+      <video id="video" playsinline muted autoplay preload="none" aria-label="Diffusion en direct de <%= site.nom %>"></video>
+
+      <div class="lecteur__chargement" aria-hidden="true"><span></span></div>
+
+      <button class="lecteur__gros-play" id="grosPlay" type="button" aria-label="Lecture" hidden>
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="fond" cx="24" cy="24" r="24"/><path d="M19 14v20l16-10z" fill="#fff"/></svg>
+      </button>
+
+      <button class="lecteur__son" id="btnSon" type="button" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        Activer le son
+      </button>
+
+      <div class="commandes" id="commandes">
+        <div class="progression" aria-hidden="true"><div class="progression__barre"></div></div>
+        <div class="commandes__ligne">
+          <button type="button" class="cmd" id="btnLecture" aria-label="Pause">
+            <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+            <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <div class="volume">
+            <button type="button" class="cmd" id="btnMuet" aria-label="Activer le son">
+              <svg class="ico-son" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+              <svg class="ico-muet" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </button>
+            <input type="range" id="curseurVolume" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <button type="button" class="cmd-live" id="btnLive" title="Revenir au direct">
+            <span class="egaliseur" aria-hidden="true"><i></i><i></i><i></i><i></i></span> LIVE
+          </button>
+          <span class="commandes__espace"></span>
+          <button type="button" class="cmd cmd--cinema" id="btnCinema" aria-label="Agrandir le lecteur" aria-pressed="false" title="Agrandir (t)">
+            <svg class="ico-agrandir" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 6H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 10H5V8h14v8z"/></svg>
+            <svg class="ico-reduire" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm0 8H5V9h14v6z"/></svg>
+          </button>
+          <button type="button" class="cmd" id="btnPleinEcran" aria-label="Plein écran" title="Plein écran (f)">
+            <svg class="ico-plein" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 14H3v7h7v-2H5v-5zm-2-4h2V5h5V3H3v7zm16 9h-5v2h7v-7h-2v5zM14 3v2h5v5h2V3h-7z"/></svg>
+            <svg class="ico-sortir" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="lecteur__message" id="messageLecteur" hidden>
+        <img src="/images/logo.png" alt="" width="60" height="75">
+        <p class="lecteur__message-titre">Le direct est momentanément indisponible</p>
+        <p>Le signal ne peut pas être reçu pour le moment. Réessayez dans quelques instants.</p>
+        <button type="button" class="bouton" id="btnReessayer">Réessayer</button>
+      </div>
+    </div>
+    <% } else { %>
+    <!-- Aucun flux fourni : état d'attente, sans simuler de direct -->
+    <div class="lecteur lecteur--attente" role="status">
+      <div class="lecteur__message">
+        <img src="/images/logo.png" alt="" width="70" height="88">
+        <p class="lecteur__message-titre">Le direct arrive bientôt</p>
+        <p>La diffusion en ligne de 151 Music Channel sera disponible ici très prochainement.</p>
+        <a class="bouton" href="/programmes">Voir nos programmes</a>
+      </div>
+    </div>
+    <% } %>
+
+    <!-- Programme en cours / suivant -->
+    <% if (enCours || suivant) { %>
+    <div class="a-l-antenne">
+      <% if (enCours) { %>
+      <div class="a-l-antenne__bloc a-l-antenne__bloc--maintenant">
+        <p class="a-l-antenne__label"><span class="egaliseur egaliseur--vert" aria-hidden="true"><i></i><i></i><i></i><i></i></span> En ce moment</p>
+        <p class="a-l-antenne__titre"><%= enCours.programme.titre %></p>
+        <p class="a-l-antenne__texte"><%= enCours.programme.description %></p>
+        <p class="a-l-antenne__heure">Depuis <%= enCours.heure.replace(':', 'h') %> (<%= site.fuseauLibelle %>)</p>
+      </div>
+      <% } %>
+      <% if (suivant) { %>
+      <div class="a-l-antenne__bloc">
+        <p class="a-l-antenne__label">À suivre</p>
+        <p class="a-l-antenne__titre"><%= suivant.programme.titre %></p>
+        <p class="a-l-antenne__texte"><%= suivant.programme.description %></p>
+        <p class="a-l-antenne__heure"><%= libelleSuivant %> (<%= site.fuseauLibelle %>)</p>
+      </div>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- ============ BANDEAU DÉFILANT ============ -->
+<% const motsBandeau = ["24h/24", "Clips", "Concerts", "Artistes", "Nouveautés", "Émissions", "Événements"]; %>
+<div class="defilant" aria-hidden="true">
+  <div class="defilant__piste">
+    <% for (let n = 0; n < 2; n++) { %>
+      <div class="defilant__groupe">
+        <span class="defilant__mot defilant__mot--fort">151 Music Channel</span>
+        <% motsBandeau.forEach((m) => { %><span class="defilant__sep">●</span><span class="defilant__mot"><%= m %></span><% }) %>
+        <span class="defilant__sep">●</span>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<!-- ============ À LA UNE (carrousel) ============ -->
+<% if (aLaUne.length) { %>
+<section class="une" aria-roledescription="carrousel" aria-label="À la une">
+  <div class="conteneur">
+    <div class="une__cadre">
+      <div class="une__piste" id="unePiste">
+        <% aLaUne.forEach((d, i) => { %>
+        <article class="une__diapo" id="une-<%= i %>" aria-roledescription="diapositive" aria-label="<%= i + 1 %> sur <%= aLaUne.length %>">
+          <img class="une__image" src="<%= aide.image(d.image, 'programme') %>" alt="" <%= i ? 'loading="lazy"' : '' %> width="1280" height="560">
+          <div class="une__texte">
+            <p class="une__sur">À la une</p>
+            <h2 class="une__titre"><%= d.titre %></h2>
+            <% if (d.motsCles && d.motsCles.length) { %>
+              <p class="une__mots"><% d.motsCles.forEach((m, j) => { %><%= j ? ' • ' : '' %><%= m %><% }) %></p>
+            <% } %>
+            <% if (d.texte) { %><p class="une__desc"><%= d.texte %></p><% } %>
+            <a class="bouton" href="<%= d.lien %>"><%= d.bouton || 'Découvrir' %></a>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+      <% if (aLaUne.length > 1) { %>
+      <button type="button" class="une__fleche une__fleche--prec" id="unePrec" aria-label="Diapositive précédente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg></button>
+      <button type="button" class="une__fleche une__fleche--suiv" id="uneSuiv" aria-label="Diapositive suivante"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg></button>
+      <div class="une__points" id="unePoints">
+        <% aLaUne.forEach((d, i) => { %><button type="button" aria-label="Aller à la diapositive <%= i + 1 %>"<%- i === 0 ? ' aria-current="true"' : '' %>></button><% }) %>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- ============ RANGÉES DÉFILANTES ============ -->
+<% if (clips.length) { %>
+<section class="rangee rangee--clips" aria-labelledby="rgClips">
+  <%- include('../partials/rangee-tete', { id: 'rgClips', titre: 'Clips du moment', lien: '/clips' }) %>
+  <div class="rangee__piste" tabindex="0" aria-label="Clips du moment, faire défiler">
+    <% clips.forEach((clip) => { %><%- include('../partials/carte-clip', { clip }) %><% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (top10.length) { %>
+<section class="rangee rangee--top" aria-labelledby="rgTop">
+  <%- include('../partials/rangee-tete', { id: 'rgTop', titre: 'Top 10 151', lien: '/clips' }) %>
+  <div class="rangee__piste" tabindex="0" aria-label="Top 10, faire défiler">
+    <% top10.forEach((clip, i) => { %><%- include('../partials/carte-top', { clip, rang: i + 1 }) %><% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (programmes.length) { %>
+<section class="rangee rangee--programmes" aria-labelledby="rgProgrammes">
+  <%- include('../partials/rangee-tete', { id: 'rgProgrammes', titre: 'Nos émissions', lien: '/programmes' }) %>
+  <div class="rangee__piste" tabindex="0" aria-label="Nos émissions, faire défiler">
+    <% programmes.forEach((programme) => { %><%- include('../partials/carte-programme', { programme }) %><% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (artistes.length) { %>
+<section class="rangee rangee--artistes" aria-labelledby="rgArtistes">
+  <%- include('../partials/rangee-tete', { id: 'rgArtistes', titre: 'Artistes à l\'honneur', lien: '/artistes' }) %>
+  <div class="rangee__piste" tabindex="0" aria-label="Artistes, faire défiler">
+    <% artistes.forEach((artiste) => { %><%- include('../partials/carte-artiste', { artiste }) %><% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (actualites.length) { %>
+<section class="rangee rangee--actus" aria-labelledby="rgActus">
+  <%- include('../partials/rangee-tete', { id: 'rgActus', titre: 'Actualités', lien: '/actualites' }) %>
+  <div class="rangee__piste" tabindex="0" aria-label="Actualités, faire défiler">
+    <% actualites.forEach((article) => { %><%- include('../partials/carte-actu', { article }) %><% }) %>
+  </div>
+</section>
+<% } %>
+
+<%- include('../partials/fin', { scripts }) %>

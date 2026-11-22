@@ -1,0 +1,8 @@
+[
+  { "titre": "Titre du clip 1", "artiste": "artiste-exemple-1", "categorie": "Afrobeat", "miniature": "", "lien": "" },
+  { "titre": "Titre du clip 2", "artiste": "artiste-exemple-2", "categorie": "Coupé-décalé", "miniature": "", "lien": "" },
+  { "titre": "Titre du clip 3", "artiste": "artiste-exemple-3", "categorie": "Gospel", "miniature": "", "lien": "" },
+  { "titre": "Titre du clip 4", "artiste": "artiste-exemple-4", "categorie": "Rap", "miniature": "", "lien": "" },
+  { "titre": "Titre du clip 5", "artiste": "artiste-exemple-1", "categorie": "Afrobeat", "miniature": "", "lien": "" },
+  { "titre": "Titre du clip 6", "artiste": "artiste-exemple-2", "categorie": "Coupé-décalé", "miniature": "", "lien": "" }
+]

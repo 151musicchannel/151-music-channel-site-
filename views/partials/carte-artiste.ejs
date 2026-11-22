@@ -1,0 +1,11 @@
+<article class="carte carte--artiste">
+  <a href="/artistes/<%= artiste.slug %>" class="carte__lien-bloc">
+    <div class="carte__media carte__media--portrait">
+      <img src="<%= aide.image(artiste.photo, 'artiste') %>" alt="Photo de <%= artiste.nom %>" loading="lazy" width="400" height="500">
+    </div>
+    <div class="carte__corps">
+      <h3 class="carte__titre"><%= artiste.nom %></h3>
+      <% if (artiste.genre) { %><p class="carte__sous"><%= artiste.genre %></p><% } %>
+    </div>
+  </a>
+</article>

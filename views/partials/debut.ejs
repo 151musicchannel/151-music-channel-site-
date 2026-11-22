@@ -1,0 +1,84 @@
+<%
+  const titrePage = seo.titre ? `${seo.titre} | ${site.nom}` : `${site.nom} — ${site.slogan}`;
+  const urlPage = siteUrl + cheminActuel;
+  const imagePartage = siteUrl + (seo.image || "/images/logo.png");
+  // Menu court : 4 liens principaux + « Plus » pour le reste (le logo ramène à l'accueil)
+  // Icônes du menu (pilule façon application de streaming)
+  const ico = {
+    accueil: "M12 3 2 11h3v9h6v-6h2v6h6v-9h3z",
+    programmes: "M21 4H3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h6v2H7v2h10v-2h-2v-2h6a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 12H4V6h16v10z",
+    clips: "M4 5h12a2 2 0 0 1 2 2v2.5l4-2.5v10l-4-2.5V17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z",
+    actualites: "M4 4h13a1 1 0 0 1 1 1v3h2a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1zm1 2v12h11V6H5zm2 2h7v2H7V8zm0 4h7v2H7v-2zm11-2v8a1 1 0 0 0 1-1v-7h-1z",
+    artistes: "M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z",
+  };
+  const liens = [["/programmes", "Programmes", ico.programmes], ["/clips", "Clips", ico.clips], ["/actualites", "Actualités", ico.actualites], ["/artistes", "Artistes", ico.artistes]];
+  const liensPlus = [["/evenements", "Événements"], ["/a-propos", "À propos"], ["/contact", "Contact"]];
+  const estActif = (href) => href === "/" ? cheminActuel === "/" : cheminActuel.startsWith(href);
+  const plusActif = liensPlus.some(([href]) => estActif(href));
+%><!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= titrePage %></title>
+  <meta name="description" content="<%= seo.description %>">
+  <% if (seo.noindex) { %><meta name="robots" content="noindex"><% } %>
+  <link rel="canonical" href="<%= urlPage %>">
+  <link rel="alternate" hreflang="fr" href="<%= urlPage %>">
+  <link rel="alternate" hreflang="x-default" href="<%= urlPage %>">
+  <meta name="theme-color" content="#141513">
+  <meta name="color-scheme" content="dark">
+  <script src="/js/theme.js"></script>
+
+  <meta property="og:site_name" content="<%= site.nom %>">
+  <meta property="og:title" content="<%= titrePage %>">
+  <meta property="og:description" content="<%= seo.description %>">
+  <meta property="og:type" content="<%= seo.type || 'website' %>">
+  <meta property="og:url" content="<%= urlPage %>">
+  <meta property="og:image" content="<%= imagePartage %>">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="aller-contenu" href="#contenu">Aller au contenu</a>
+
+  <header class="entete">
+    <div class="conteneur entete__barre">
+      <a href="/" class="entete__logo" aria-label="<%= site.nom %> — accueil">
+        <img src="/images/logo.png" alt="<%= site.nom %>" width="388" height="487">
+      </a>
+
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="/"<% if (estActif('/')) { %> class="actif" aria-current="page"<% } %>><svg viewBox="0 0 24 24" aria-hidden="true"><path d="<%= ico.accueil %>"/></svg>Accueil</a>
+        <% liens.forEach(([href, texte, d]) => { %>
+          <a href="<%= href %>"<% if (estActif(href)) { %> class="actif" aria-current="page"<% } %>><svg viewBox="0 0 24 24" aria-hidden="true"><path d="<%= d %>"/></svg><%= texte %></a>
+        <% }) %>
+        <div class="menu__plus">
+          <button type="button" class="menu__bouton-plus<%= plusActif ? ' actif' : '' %>" id="btnPlus" aria-expanded="false" aria-controls="sousMenu">
+            <svg class="menu__ico-plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z"/></svg>Plus <svg class="menu__fleche" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <div class="sous-menu" id="sousMenu">
+            <% liensPlus.forEach(([href, texte]) => { %>
+              <a href="<%= href %>"<% if (estActif(href)) { %> class="actif" aria-current="page"<% } %>><%= texte %></a>
+            <% }) %>
+          </div>
+        </div>
+      </nav>
+
+      <a href="/#direct" class="bouton-direct">
+        <span class="point-live" aria-hidden="true"></span> Direct
+      </a>
+
+      <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">

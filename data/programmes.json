@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "top-151",
+    "titre": "Top 151",
+    "description": "Le classement des clips les plus demandés de la semaine, du 10e au 1er.",
+    "presentateur": "",
+    "image": "",
+    "frequence": "Chaque samedi",
+    "aLaUne": true,
+    "diffusions": [{ "jours": [6], "heure": "18:00", "duree": 90 }]
+  },
+  {
+    "slug": "l-invite-151",
+    "titre": "L'Invité 151",
+    "description": "Un artiste s'installe sur le plateau pour une interview et un live acoustique.",
+    "presentateur": "",
+    "image": "",
+    "frequence": "Chaque vendredi",
+    "aLaUne": true,
+    "diffusions": [{ "jours": [5], "heure": "20:30", "duree": 60 }]
+  },
+  {
+    "slug": "afro-hits",
+    "titre": "Afro Hits",
+    "description": "Une heure de clips afro : afrobeat, coupé-décalé, ndombolo et nouveautés.",
+    "presentateur": "",
+    "image": "",
+    "frequence": "Du lundi au vendredi",
+    "aLaUne": true,
+    "diffusions": [{ "jours": [1, 2, 3, 4, 5], "heure": "12:00", "duree": 60 }]
+  },
+  {
+    "slug": "reveil-musical",
+    "titre": "Réveil Musical",
+    "description": "Les clips qui donnent de l'énergie pour bien commencer la journée.",
+    "presentateur": "",
+    "image": "",
+    "frequence": "Tous les jours",
+    "aLaUne": false,
+    "diffusions": [{ "jours": [1, 2, 3, 4, 5, 6, 7], "heure": "06:00", "duree": 180 }]
+  },
+  {
+    "slug": "gospel-time",
+    "titre": "Gospel Time",
+    "description": "Le meilleur du gospel et de la musique chrétienne.",
+    "presentateur": "",
+    "image": "",
+    "frequence": "Chaque dimanche",
+    "aLaUne": false,
+    "diffusions": [{ "jours": [7], "heure": "09:00", "duree": 120 }]
+  }
+]

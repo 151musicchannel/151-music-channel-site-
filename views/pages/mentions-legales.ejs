@@ -1,0 +1,33 @@
+<% const ml = site.mentionsLegales; %>
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <h1 class="bandeau__titre">Mentions légales</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur conteneur--etroit texte-legal">
+    <h2>Éditeur du site</h2>
+    <p><%= ml.editeur %></p>
+
+    <h2>Directeur de la publication</h2>
+    <p><%= ml.directeurPublication %></p>
+
+    <h2>Hébergement</h2>
+    <p><%= ml.hebergeur %></p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>Le nom, le logo et l'ensemble des contenus de <%= site.nom %> sont protégés. Toute reproduction sans autorisation est interdite. Les clips vidéo restent la propriété de leurs ayants droit et sont consultables sur leurs plateformes d'origine.</p>
+
+    <h2 id="confidentialite">Données personnelles</h2>
+    <p>Les informations envoyées via le formulaire de contact (nom, adresse e-mail, sujet, message) servent uniquement à répondre à votre demande. Elles ne sont ni vendues ni transmises à des tiers, et sont conservées le temps nécessaire au traitement de la demande.</p>
+    <p>Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant via la <a href="/contact">page Contact</a>.</p>
+
+    <h2>Cookies</h2>
+    <p>Ce site n'utilise pas de cookies publicitaires ni de mesure d'audience. Les vidéos externes s'ouvrent sur leurs plateformes, qui appliquent leur propre politique.</p>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

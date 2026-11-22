@@ -1,0 +1,29 @@
+<%- include('../partials/debut') %>
+
+<article class="article">
+  <div class="conteneur conteneur--etroit">
+    <nav class="fil" aria-label="Fil d'Ariane"><a href="/actualites">Actualités</a> <span aria-hidden="true">/</span> <span><%= article.categorie || 'Article' %></span></nav>
+    <h1 class="article__titre"><%= article.titre %></h1>
+    <p class="article__meta">
+      <time datetime="<%= article.date %>"><%= aide.date(article.date) %></time>
+      <% if (artiste) { %> · <a href="/artistes/<%= artiste.slug %>"><%= artiste.nom %></a><% } %>
+    </p>
+    <img class="article__image" src="<%= aide.image(article.image, 'actualite') %>" alt="<%= article.titre %>" width="1280" height="720">
+    <div class="article__contenu">
+      <% (article.contenu || []).forEach((p) => { %><p><%= p %></p><% }) %>
+    </div>
+  </div>
+</article>
+
+<% if (autres.length) { %>
+<section class="section section--teinte" aria-labelledby="titreAutres">
+  <div class="conteneur">
+    <h2 class="titre-section" id="titreAutres">À lire aussi</h2>
+    <div class="grille grille--3">
+      <% autres.forEach((a) => { %><%- include('../partials/carte-actu', { article: a }) %><% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<%- include('../partials/fin') %>

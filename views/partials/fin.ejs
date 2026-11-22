@@ -1,0 +1,45 @@
+  </main>
+
+  <footer class="pied">
+    <div class="conteneur pied__grille">
+      <div class="pied__marque">
+        <img src="/images/logo.png" alt="<%= site.nom %>" class="pied__logo" width="388" height="487" loading="lazy">
+        <p><%= site.aPropos.intro %></p>
+      </div>
+
+      <nav aria-label="Rubriques">
+        <p class="pied__titre">Rubriques</p>
+        <ul class="pied__liens">
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/programmes">Programmes</a></li>
+          <li><a href="/clips">Clips musicaux</a></li>
+          <li><a href="/actualites">Actualités</a></li>
+          <li><a href="/artistes">Artistes</a></li>
+          <li><a href="/evenements">Événements</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="pied__titre">Coordonnées</p>
+        <ul class="pied__coordonnees">
+          <% if (site.contact.email) { %><li><a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a></li><% } %>
+          <% if (site.contact.telephone) { %><li><a href="tel:<%= site.contact.telephone.replace(/\s/g, '') %>"><%= site.contact.telephone %></a></li><% } %>
+          <% if (site.contact.adresse) { %><li><%= site.contact.adresse %></li><% } %>
+          <% if (!site.contact.email && !site.contact.telephone && !site.contact.adresse) { %><li>Coordonnées bientôt disponibles.</li><% } %>
+          <li><a href="/contact">Formulaire de contact →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="conteneur pied__bas">
+      <p>© <%= annee %> <%= site.nom %>. Tous droits réservés.</p>
+      <a href="/mentions-legales">Mentions légales et confidentialité</a>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+  <% if (typeof scripts !== 'undefined') { scripts.forEach((s) => { %><script src="<%= s %>" defer></script><% }) } %>
+</body>
+</html>

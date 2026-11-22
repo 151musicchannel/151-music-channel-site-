@@ -1,0 +1,48 @@
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">Agenda</p>
+    <h1 class="bandeau__titre">Événements</h1>
+    <p class="bandeau__texte">Concerts, festivals, spectacles et événements partenaires auxquels participe 151 Music Channel.</p>
+  </div>
+</section>
+
+<% const liste = (evts, titre, passe) => { %>
+  <h2 class="titre-section"><%= titre %></h2>
+  <div class="evenements">
+    <% evts.forEach((e) => { const d = aide.dateBloc(e.date); %>
+    <article class="evenement<%= passe ? ' evenement--passe' : '' %>">
+      <div class="evenement__date" aria-hidden="true"><span><%= d.jour %></span><%= d.mois %></div>
+      <img class="evenement__image" src="<%= aide.image(e.image, 'evenement') %>" alt="" loading="lazy" width="640" height="360">
+      <div class="evenement__corps">
+        <% if (e.type) { %><p class="etiquette"><%= e.type %></p><% } %>
+        <h3 class="carte__titre"><%= e.titre %></h3>
+        <p class="evenement__infos">
+          <time datetime="<%= e.date %>"><%= aide.date(e.date) %></time><% if (e.dateFin) { %> – <time datetime="<%= e.dateFin %>"><%= aide.date(e.dateFin) %></time><% } %>
+          <% if (e.lieu) { %> · <%= e.lieu %><% } %>
+        </p>
+        <p class="carte__texte"><%= e.description %></p>
+        <% if (e.lien) { %><a class="lien-fleche" href="<%= e.lien %>" target="_blank" rel="noopener noreferrer">En savoir plus →</a><% } %>
+      </div>
+    </article>
+    <% }) %>
+  </div>
+<% } %>
+
+<section class="section">
+  <div class="conteneur">
+    <% if (aVenir.length) { liste(aVenir, "À venir", false) } else { %>
+      <h2 class="titre-section">À venir</h2>
+      <p class="vide">Aucun événement annoncé pour le moment.</p>
+    <% } %>
+  </div>
+</section>
+
+<% if (passes.length) { %>
+<section class="section section--teinte">
+  <div class="conteneur"><% liste(passes, "Événements passés", true) %></div>
+</section>
+<% } %>
+
+<%- include('../partials/fin') %>

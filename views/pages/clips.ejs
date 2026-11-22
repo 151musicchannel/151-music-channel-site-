@@ -1,0 +1,32 @@
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">À voir</p>
+    <h1 class="bandeau__titre">Clips musicaux</h1>
+    <p class="bandeau__texte">Les clips mis en avant par 151 Music Channel. Chaque clip s'ouvre dans un nouvel onglet sur sa plateforme de diffusion.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <% if (categories.length > 1) { %>
+    <nav class="filtres" aria-label="Filtrer par catégorie">
+      <a href="/clips" class="filtre<%= !categorie ? ' actif' : '' %>"<% if (!categorie) { %> aria-current="page"<% } %>>Tous</a>
+      <% categories.forEach((c) => { %>
+        <a href="/clips?categorie=<%= encodeURIComponent(c) %>" class="filtre<%= categorie === c ? ' actif' : '' %>"<% if (categorie === c) { %> aria-current="page"<% } %>><%= c %></a>
+      <% }) %>
+    </nav>
+    <% } %>
+
+    <% if (clips.length) { %>
+      <div class="grille grille--4">
+        <% clips.forEach((clip) => { %><%- include('../partials/carte-clip', { clip }) %><% }) %>
+      </div>
+    <% } else { %>
+      <p class="vide">Aucun clip pour le moment.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

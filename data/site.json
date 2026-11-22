@@ -1,0 +1,36 @@
+{
+  "nom": "151 Music Channel",
+  "slogan": "La chaîne 100 % musique",
+  "description": "151 Music Channel, la chaîne de télévision musicale : regardez le direct, découvrez nos émissions, les clips, les artistes et l'actualité musicale.",
+  "fuseauHoraire": "Africa/Porto-Novo",
+  "fuseauLibelle": "GMT+1",
+  "direct": {
+    "type": "hls",
+    "url": "/direct/index.m3u8",
+    "_aide": "type = hls (lien .m3u8), youtube (ID de la vidéo live) ou iframe (lien d'intégration). Laisser url vide tant que le flux n'est pas fourni : le lecteur affiche alors un message d'attente."
+  },
+  "contact": {
+    "email": "",
+    "telephone": "",
+    "adresse": "",
+    "horaires": ""
+  },
+  "aPropos": {
+    "intro": "151 Music Channel est une chaîne de télévision consacrée à la musique et au divertissement. Elle met en lumière les artistes, les clips et les grands moments de la scène musicale, pour un public international.",
+    "histoire": "Texte à fournir : origine de la chaîne, date de création, étapes importantes.",
+    "mission": "Faire découvrir et promouvoir la musique et les artistes auprès d'un large public, à la télévision comme sur le web.",
+    "vision": "Devenir une référence de la télévision musicale, accessible partout dans le monde.",
+    "objectifs": [
+      "Offrir une diffusion musicale de qualité, 24h/24.",
+      "Donner de la visibilité aux artistes confirmés comme aux nouveaux talents.",
+      "Accompagner les événements musicaux et culturels.",
+      "Rassembler un public international autour de la musique."
+    ],
+    "positionnement": "Texte à fournir : styles musicaux mis en avant, public visé, ce qui distingue 151 Music Channel des autres chaînes."
+  },
+  "mentionsLegales": {
+    "editeur": "À compléter : raison sociale, forme juridique, adresse du siège, numéro d'immatriculation.",
+    "directeurPublication": "À compléter.",
+    "hebergeur": "À compléter : nom, adresse et téléphone de l'hébergeur du site."
+  }
+}

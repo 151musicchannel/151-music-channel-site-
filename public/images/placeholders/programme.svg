@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect width="640" height="360" fill="#2B2D29"/>
+  <circle cx="544" cy="54" r="198" fill="#FFFFFF" opacity=".10"/>
+  <circle cx="64" cy="342" r="126" fill="#FFFFFF" opacity=".08"/>
+  <g transform="translate(320 180)" fill="#FFFFFF"><path transform="translate(-31 -40) scale(2.6)" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11h-2z"/></g>
+  <text x="320" y="317" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="25" letter-spacing="3" fill="#FFFFFF" opacity=".85">151 MUSIC CHANNEL</text>
+</svg>

@@ -1,0 +1,9 @@
+<article class="carte-top">
+  <a class="carte-top__lien" href="<%= clip.lien || '/clips' %>"<% if (clip.lien) { %> target="_blank" rel="noopener noreferrer"<% } %>>
+    <div class="carte-top__media">
+      <img src="<%= aide.miniatureClip(clip) %>" alt="" loading="lazy" width="480" height="270">
+    </div>
+    <p class="carte-top__titre"><span class="sr-only">Numéro <%= rang %> : </span><%= clip.titre %></p>
+    <p class="carte-top__artiste"><%= aide.nomArtiste(clip.artiste) %></p>
+  </a>
+</article>

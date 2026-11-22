@@ -1,0 +1,887 @@
+/* =========================================================
+   151 MUSIC CHANNEL — Feuille de style
+   Palette officielle (cahier des charges §3.1)
+   ========================================================= */
+:root {
+  --blanc: #FFFFFF;
+  --vert: #66B32F;
+  --vert-clair: #EAF5E0;
+  --anthracite: #2B2D29;
+  --citron: #D7F25C;
+
+  /* Nuances dérivées (lisibilité / survols) */
+  --vert-fonce: #4E8F20;
+  --citron-survol: #CBEA3F;
+  --gris: #5F635A;
+  --bordure: #30332D;
+  --live: #E53935;
+  --erreur: #EF5350;
+
+  /* Typographie d origine : titres en Bebas Neue, textes en Montserrat */
+  --police-titre: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --police: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --rayon: 12px;
+  --rayon-bouton: 10px;
+  --entete: 72px;
+  /* Largeur du site et marge sur les côtés (une seule source pour tout le site) */
+  --largeur-site: 2000px;
+  --gouttiere: clamp(16px, 2vw, 32px);
+  --ombre: 0 18px 40px -22px rgba(0, 0, 0, .8);
+  --transition: .22s ease;
+
+  /* ---------- Couleurs par rôle : THÈME SOMBRE (unique) ----------
+     Construit sur l anthracite officiel ; le vert reste un accent
+     (logo, liens, navigation), jamais un aplat de fond. */
+  color-scheme: dark;
+  --fond: #141513;                 /* fond de page */
+  --surface: #1E201C;              /* cartes, menus, champs */
+  --teinte: #1A1C18;               /* fonds secondaires (neutres) */
+  --teinte-nav: rgba(102, 179, 47, .16); /* seule la navigation garde un voile vert */
+  --texte: #F3F5EF;
+  --texte-doux: #A9AEA2;
+  --accent: #8CCB5A;               /* liens et sur-titres verts, lisibles sur sombre */
+  --sur-citron: var(--anthracite); /* texte posé sur le vert citron */
+  --fond-fonce: #0C0D0B;           /* pied de page */
+  --entete-fond: rgba(20, 21, 19, .62);
+  --erreur-fond: #3A2222;
+  --erreur-texte: #FFCDD2;
+  --logo-contour: rgba(255, 255, 255, .14);
+  --defilant-fond: #000000;
+  --defilant-texte: var(--blanc);
+  --defilant-fort: var(--citron);
+  --defilant-bord: var(--vert);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--police);
+  color: var(--texte);
+  background: var(--fond);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+ul { list-style: none; }
+:focus-visible { outline: 3px solid var(--vert); outline-offset: 2px; border-radius: 4px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.aller-contenu {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--fond-fonce); color: #fff; padding: 10px 14px; border-radius: 8px;
+}
+.aller-contenu:focus { top: 12px; }
+
+.conteneur { width: 100%; max-width: var(--largeur-site); margin: 0 auto; padding: 0 var(--gouttiere); }
+.conteneur--etroit { max-width: 820px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Éléments communs ---------- */
+.point-live {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--live); display: inline-block; flex-shrink: 0;
+  animation: pulse 1.8s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, .55); }
+  100% { box-shadow: 0 0 0 8px rgba(229, 57, 53, 0); }
+}
+
+.sur-titre {
+  font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.titre-section {
+  font-family: var(--police-titre); font-weight: 400;
+  font-size: clamp(26px, 2.8vw, 38px); line-height: 1.1; letter-spacing: 0;
+  margin-bottom: 20px;
+}
+.etiquette {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent); background: var(--teinte);
+  padding: 3px 8px; border-radius: 6px;
+}
+.lien-fleche { font-weight: 700; color: var(--accent); white-space: nowrap; transition: color var(--transition); }
+.lien-fleche:hover { color: var(--texte); }
+.vide { color: var(--texte-doux); }
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--citron); color: var(--sur-citron);
+  border: 0; border-radius: var(--rayon-bouton);
+  font-weight: 700; font-size: 15px; line-height: 1.2;
+  padding: 12px 22px;
+  transition: background var(--transition), transform var(--transition);
+}
+.bouton:hover { background: var(--citron-survol); transform: translateY(-1px); }
+.bouton svg { width: 16px; height: 16px; fill: currentColor; }
+.bouton--petit { font-size: 13px; padding: 8px 14px; }
+.bouton--contour { background: transparent; box-shadow: inset 0 0 0 2px var(--texte); }
+.bouton--contour:hover { background: var(--texte); color: var(--fond); }
+.bouton--inactif, .bouton--inactif:hover { background: var(--teinte); color: var(--texte-doux); cursor: default; transform: none; }
+
+/* ============ EN-TÊTE ============ */
+/* Effet verre : fond blanc translucide + flou de ce qui passe dessous.
+   L en-tête reste fixé en haut pendant le défilement. */
+.entete {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: var(--entete-fond);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+          backdrop-filter: blur(18px) saturate(180%);
+  border-bottom: 2px solid #000000;
+  box-shadow: 0 8px 24px -18px rgba(0, 0, 0, .35);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .entete { background: rgba(20, 21, 19, .96); }
+}
+/* Place réservée sous l en-tête fixe */
+body { padding-top: calc(var(--entete) + 2px); }
+html { scroll-padding-top: calc(var(--entete) + 16px); }
+/* Pleine largeur : logo collé à gauche, bouton Direct collé à droite */
+.entete__barre {
+  display: flex; align-items: center; gap: 24px; height: var(--entete);
+  max-width: none; padding-inline: var(--gouttiere);
+}
+.entete__logo img, .pied__logo { box-shadow: 0 0 0 1px var(--logo-contour); }
+.entete__logo img { height: 52px; width: auto; }
+
+.menu { display: flex; gap: 2px; margin-left: auto; }
+.menu a {
+  font-weight: 600; font-size: 14.5px;
+  padding: 8px 12px; border-radius: var(--rayon-bouton);
+  transition: background var(--transition), color var(--transition);
+}
+.menu a:hover { background: var(--teinte-nav); color: var(--accent); }
+.menu a.actif { color: var(--accent); background: var(--teinte-nav); }
+.menu__accueil { display: none; } /* sur ordinateur, le logo ramène à l'accueil */
+
+.menu__plus { position: relative; }
+.menu__bouton-plus {
+  display: inline-flex; align-items: center; gap: 2px;
+  background: none; border: 0;
+  font-weight: 600; font-size: 14.5px;
+  padding: 8px 8px 8px 12px; border-radius: var(--rayon-bouton);
+  transition: background var(--transition), color var(--transition);
+}
+.menu__bouton-plus svg { width: 20px; height: 20px; fill: currentColor; transition: transform var(--transition); }
+.menu__bouton-plus:hover, .menu__bouton-plus[aria-expanded="true"] { background: var(--teinte-nav); color: var(--accent); }
+.menu__bouton-plus.actif { color: var(--accent); }
+.menu__bouton-plus[aria-expanded="true"] svg { transform: rotate(180deg); }
+.sous-menu {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  min-width: 190px; padding: 6px;
+  background: var(--surface); border: 1px solid var(--bordure); border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+.menu__plus.ouvert .sous-menu { opacity: 1; visibility: visible; transform: none; }
+.sous-menu a { padding: 9px 12px; }
+
+.bouton-direct {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #000000; color: var(--vert);
+  font-weight: 700; font-size: 14px;
+  padding: 9px 16px; border-radius: var(--rayon-bouton);
+  transition: background var(--transition);
+}
+.bouton-direct:hover { background: #222420; color: #7FCC45; }
+
+.burger { display: none; background: none; border: 0; width: 42px; height: 42px; padding: 9px; border-radius: 8px; }
+.burger span { display: block; height: 2px; background: var(--texte); margin: 5px 0; border-radius: 2px; transition: transform var(--transition), opacity var(--transition); }
+
+/* ============ ACCUEIL : LE DIRECT ============ */
+.accueil { background: var(--fond); padding: 26px 0 44px; }
+.accueil__tete { text-align: center; margin-bottom: 16px; }
+.accueil__titre {
+  font-family: var(--police-titre); font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 46px); line-height: 1.08; letter-spacing: 0;
+}
+
+/* ---------- Lecteur ---------- */
+.lecteur {
+  position: relative;
+  width: 100%;
+  max-width: max(calc((100vh - var(--entete) - 130px) * 16 / 9), 640px);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #000;
+  border-radius: var(--rayon);
+  overflow: hidden;
+  box-shadow: 0 26px 60px -26px rgba(43, 45, 41, .55);
+  outline: none;
+  user-select: none;
+}
+.lecteur video, .lecteur iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: 0; background: #000; object-fit: contain;
+}
+.lecteur:fullscreen { border-radius: 0; max-width: none; }
+.lecteur.inactif { cursor: none; }
+.lecteur--attente { background: var(--fond-fonce); }
+
+.commandes {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 40px 12px 6px;
+  background: linear-gradient(to top, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0));
+  color: #fff;
+  transition: opacity .25s;
+}
+.lecteur.inactif .commandes { opacity: 0; pointer-events: none; }
+.progression { height: 4px; margin: 0 4px 4px; background: rgba(255, 255, 255, .25); border-radius: 2px; overflow: hidden; }
+.progression__barre { height: 100%; background: var(--vert); }
+.commandes__ligne { display: flex; align-items: center; gap: 2px; height: 46px; }
+.commandes__espace { flex: 1; }
+
+.cmd {
+  width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: #fff; border-radius: 50%;
+  transition: background var(--transition);
+}
+.cmd:hover { background: rgba(255, 255, 255, .12); }
+.cmd svg { width: 26px; height: 26px; fill: currentColor; }
+.lecteur .ico-play, .lecteur.en-pause .ico-pause { display: none; }
+.lecteur.en-pause .ico-play { display: block; }
+.lecteur .ico-muet, .lecteur.muet .ico-son { display: none; }
+.lecteur.muet .ico-muet { display: block; }
+.lecteur .ico-sortir, .lecteur:fullscreen .ico-plein { display: none; }
+.lecteur:fullscreen .ico-sortir { display: block; }
+
+.volume { display: flex; align-items: center; }
+.volume input { width: 0; opacity: 0; accent-color: #fff; cursor: pointer; transition: width .2s, opacity .2s; }
+.volume:hover input, .volume:focus-within input { width: 72px; opacity: 1; margin-right: 8px; }
+
+.cmd-live {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: none; border: 0; color: #fff;
+  font-size: 13px; font-weight: 800; letter-spacing: .08em;
+  padding: 6px 10px; border-radius: 6px;
+}
+.cmd-live:hover { background: rgba(255, 255, 255, .12); }
+.cmd-live.decale .point-live { background: #9a9a9a; animation: none; }
+
+.lecteur__gros-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 76px; height: 76px; background: none; border: 0; padding: 0;
+}
+.lecteur__gros-play svg { width: 100%; height: 100%; }
+.lecteur__gros-play .fond { fill: rgba(0, 0, 0, .7); transition: fill var(--transition); }
+.lecteur:hover .lecteur__gros-play .fond { fill: var(--vert); }
+.lecteur [hidden] { display: none !important; }
+
+.lecteur__son {
+  position: absolute; top: 14px; left: 14px;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--citron); color: var(--sur-citron);
+  border: 0; border-radius: var(--rayon-bouton);
+  font-weight: 700; font-size: 14px; padding: 9px 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+}
+.lecteur__son svg { width: 20px; height: 20px; fill: currentColor; }
+
+.lecteur__chargement { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; display: none; pointer-events: none; }
+.lecteur.charge .lecteur__chargement { display: block; }
+.lecteur__chargement span {
+  display: block; width: 100%; height: 100%; border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, .2); border-top-color: var(--vert);
+  animation: tourne .8s linear infinite;
+}
+@keyframes tourne { to { transform: rotate(360deg); } }
+
+.lecteur__message {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; text-align: center; padding: 24px;
+  background: var(--fond-fonce); color: #fff;
+}
+.lecteur__message img { width: 64px; height: auto; margin-bottom: 6px; }
+.lecteur__message-titre { font-family: var(--police-titre); font-size: clamp(20px, 2.6vw, 30px); letter-spacing: 0; line-height: 1.15; }
+.lecteur__message p { max-width: 460px; color: #D5D8CF; }
+.lecteur__message .bouton { margin-top: 8px; }
+
+.lecteur.externe .commandes, .lecteur.externe .lecteur__son, .lecteur.externe .lecteur__gros-play { display: none !important; }
+
+/* ---------- À l'antenne ---------- */
+.a-l-antenne {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  max-width: max(calc((100vh - var(--entete) - 130px) * 16 / 9), 640px);
+  margin: 22px auto 0;
+}
+.a-l-antenne__bloc { background: var(--surface); border-radius: var(--rayon); padding: 18px 20px; border: 1px solid var(--bordure); }
+.a-l-antenne__bloc--maintenant { border-left: 5px solid var(--vert); }
+.a-l-antenne__label {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+}
+.a-l-antenne__titre { font-family: var(--police-titre); font-size: 24px; line-height: 1.15; margin: 4px 0; }
+.a-l-antenne__texte { color: var(--texte-doux); font-size: 14.5px; }
+.a-l-antenne__heure { font-weight: 700; font-size: 14px; margin-top: 6px; }
+
+/* ============ SECTIONS ============ */
+.section { padding: 64px 0; }
+.section--teinte { background: var(--teinte); }
+.section__tete { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 4px; flex-wrap: wrap; }
+.section__tete .titre-section { margin-bottom: 20px; }
+.section__tete > a { margin-bottom: 24px; }
+
+.grille { display: grid; gap: 22px; }
+.grille--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grille--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ---------- Cartes ---------- */
+.carte {
+  background: var(--surface);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  border: 1px solid var(--bordure);
+  display: flex; flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.carte:hover { transform: translateY(-3px); box-shadow: var(--ombre); }
+.carte__lien-bloc { display: flex; flex-direction: column; height: 100%; }
+.carte__media { position: relative; aspect-ratio: 16 / 9; background: var(--teinte); overflow: hidden; }
+.carte__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.carte:hover .carte__media img { transform: scale(1.04); }
+.carte__media--portrait { aspect-ratio: 4 / 5; }
+.carte__badge {
+  position: absolute; left: 12px; top: 12px;
+  background: var(--fond-fonce); color: #fff;
+  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+}
+.carte__lecture {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.9);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--citron); display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity var(--transition), transform var(--transition);
+}
+.carte__lecture svg { width: 24px; height: 24px; fill: var(--sur-citron); margin-left: 3px; }
+.carte:hover .carte__lecture { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+.carte__corps { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.carte__corps > .bouton, .carte__corps > .carte__plus { margin-top: auto; align-self: flex-start; }
+.carte__corps > .bouton { margin-top: 8px; }
+.carte__titre { font-size: 17px; font-weight: 700; line-height: 1.3; }
+.carte__sous { font-size: 14px; color: var(--texte-doux); font-weight: 500; }
+.carte__sous a:hover { color: var(--accent); text-decoration: underline; }
+.carte__texte { font-size: 14.5px; color: var(--texte-doux); }
+.carte__meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--texte-doux); }
+.carte__plus { font-weight: 700; color: var(--accent); font-size: 14px; padding-top: 6px; }
+.carte__infos { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; padding-top: 12px; border-top: 1px solid var(--teinte); }
+.carte__infos li { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
+.carte__infos svg { width: 18px; height: 18px; fill: var(--vert); flex-shrink: 0; }
+.carte--clip .carte__titre { font-size: 16px; }
+.carte--artiste .carte__corps { padding: 14px 16px; }
+
+/* ============ PAGES INTÉRIEURES ============ */
+.bandeau { background: var(--teinte); padding: 48px 0 44px; }
+.bandeau__titre {
+  font-family: var(--police-titre); font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 58px); line-height: 1.05; letter-spacing: 0;
+}
+.bandeau__texte { color: var(--texte-doux); font-size: 17px; max-width: 640px; margin-top: 10px; }
+.bandeau__texte--large { max-width: 760px; }
+
+.filtres { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filtre {
+  font-weight: 600; font-size: 14px;
+  padding: 7px 14px; border-radius: var(--rayon-bouton);
+  background: var(--teinte); transition: background var(--transition), color var(--transition);
+}
+.filtre:hover { background: var(--bordure); }
+.filtre.actif { background: var(--texte); color: var(--fond); }
+
+.fil { font-size: 13px; color: var(--texte-doux); margin-bottom: 12px; }
+.fil a { color: var(--accent); font-weight: 600; }
+.fil a:hover { text-decoration: underline; }
+
+/* Article */
+.article { padding: 44px 0 64px; }
+.article__titre { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.18; }
+.article__meta { color: var(--texte-doux); margin: 10px 0 24px; font-weight: 500; }
+.article__meta a { color: var(--accent); font-weight: 700; }
+.article__image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--rayon); margin-bottom: 28px; }
+.article__contenu p { font-size: 17.5px; line-height: 1.8; margin-bottom: 18px; }
+
+/* Fiche artiste */
+.fiche { padding: 48px 0 64px; }
+.fiche__grille { display: grid; grid-template-columns: 360px 1fr; gap: 48px; align-items: start; }
+.fiche__photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--rayon); }
+.fiche__nom { font-family: var(--police-titre); font-weight: 400; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.05; margin: 8px 0 12px; }
+.fiche__presentation { font-size: 19px; font-weight: 500; margin-bottom: 24px; }
+.fiche__sous-titre { font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.fiche__bio { color: var(--texte-doux); font-size: 16.5px; line-height: 1.8; }
+
+/* Événements */
+.evenements { display: flex; flex-direction: column; gap: 18px; margin-bottom: 8px; }
+.evenement {
+  display: grid; grid-template-columns: 84px 240px 1fr; gap: 22px; align-items: center;
+  background: var(--surface); border: 1px solid var(--bordure); border-radius: var(--rayon);
+  padding: 16px; transition: box-shadow var(--transition);
+}
+.evenement:hover { box-shadow: var(--ombre); }
+.evenement--passe { opacity: .7; }
+.evenement__date {
+  text-align: center; background: var(--anthracite); color: #fff;
+  border-radius: 10px; padding: 10px 0; font-weight: 700; text-transform: uppercase; font-size: 13px;
+}
+.evenement__date span { display: block; font-family: var(--police-titre); font-size: 30px; line-height: 1; font-weight: 400; }
+.evenement__image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.evenement__corps { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.evenement__infos { font-weight: 600; font-size: 14px; }
+
+/* À propos */
+.apropos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.apropos__bloc { border: 1px solid var(--bordure); border-radius: var(--rayon); padding: 26px; color: var(--texte-doux); }
+.apropos__bloc--large { grid-column: 1 / -1; border: 0; padding: 0 0 8px; font-size: 17px; max-width: 820px; }
+.apropos__icone { font-family: var(--police-titre); font-size: 32px; color: var(--vert); line-height: 1; margin-bottom: 8px; }
+.apropos__titre { font-size: 20px; font-weight: 800; color: var(--texte); margin-bottom: 8px; }
+.objectifs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.objectifs li {
+  background: var(--surface); border-radius: var(--rayon); padding: 18px 20px 18px 52px;
+  position: relative; font-weight: 600;
+}
+.objectifs li::before {
+  content: ""; position: absolute; left: 20px; top: 22px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--anthracite) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center / 13px no-repeat;
+}
+.appel {
+  margin-top: 36px; padding: 26px 28px; border-radius: var(--rayon);
+  background: var(--fond-fonce); color: #fff;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 18px; font-weight: 600;
+}
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: start; }
+.contact__infos { background: var(--teinte); border-radius: var(--rayon); padding: 24px; }
+.contact__infos dl { display: grid; gap: 4px; }
+.contact__infos dt { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 10px; }
+.contact__infos dd a { font-weight: 600; word-break: break-word; }
+.contact__infos dd a:hover { color: var(--accent); }
+
+.formulaire { display: grid; gap: 4px; }
+.champ { display: flex; flex-direction: column; gap: 6px; }
+.champ label { font-weight: 700; font-size: 14px; }
+.champ input, .champ textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid var(--bordure); border-radius: var(--rayon-bouton);
+  background: var(--surface); font-size: 16px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.champ textarea { resize: vertical; min-height: 150px; }
+.champ input:focus, .champ textarea:focus { outline: none; border-color: var(--vert); box-shadow: 0 0 0 3px rgba(102, 179, 47, .2); }
+.champ__erreur { color: var(--erreur); font-size: 13px; font-weight: 600; min-height: 20px; }
+.champ--erreur input, .champ--erreur textarea { border-color: var(--erreur); }
+.formulaire__note { font-size: 13px; color: var(--texte-doux); margin-bottom: 12px; }
+.formulaire__note a { text-decoration: underline; }
+.formulaire .bouton { justify-self: start; }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.alerte { border-radius: var(--rayon-bouton); padding: 14px 16px; margin-bottom: 18px; font-size: 15px; }
+.alerte--succes { background: var(--teinte); border-left: 5px solid var(--vert); }
+.alerte--erreur { background: var(--erreur-fond); border-left: 5px solid var(--erreur); color: var(--erreur-texte); }
+
+/* Texte légal */
+.texte-legal h2 { font-size: 20px; font-weight: 800; margin: 28px 0 8px; }
+.texte-legal h2:first-child { margin-top: 0; }
+.texte-legal p { color: var(--texte-doux); margin-bottom: 10px; }
+.texte-legal a { color: var(--accent); text-decoration: underline; }
+
+/* 404 */
+.page-erreur { text-align: center; padding: 96px 0; }
+.page-erreur__code { font-family: var(--police-titre); font-size: 96px; line-height: 1; color: var(--vert); }
+.page-erreur .bandeau__texte { margin: 10px auto 24px; }
+
+/* ============ PIED DE PAGE ============ */
+.pied { background: var(--fond-fonce); color: #C9CCC3; font-size: 14.5px; }
+.pied__grille { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-top: 52px; padding-bottom: 36px; }
+.pied__logo { width: 64px; height: auto; margin-bottom: 14px; }
+.pied__marque p { max-width: 380px; }
+.pied__titre { color: #fff; font-weight: 800; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+.pied__liens { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+.pied a { transition: color var(--transition); }
+.pied a:hover { color: var(--citron); }
+.pied__coordonnees { display: grid; gap: 6px; }
+.pied__bas {
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  padding-top: 18px; padding-bottom: 22px; font-size: 13px;
+}
+
+/* ============ ADAPTATION AUX ÉCRANS ============ */
+@media (max-width: 1100px) {
+  .grille--4 { gap: 16px; }
+  .evenement { grid-template-columns: 84px 200px 1fr; }
+}
+@media (max-width: 900px) {
+  .grille--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 960px) {
+  :root { --entete: 64px; }
+  .entete__barre { gap: 12px; }
+  .entete__logo img { height: 44px; }
+  .bouton-direct { margin-left: auto; }
+  .burger { display: block; }
+  .menu {
+    position: absolute; top: calc(100% + 2px); left: 0; right: 0; /* sous la bordure noire */
+    flex-direction: column; gap: 0;
+    background: var(--surface); border-bottom: 2px solid #000000;
+    box-shadow: 0 20px 30px -20px rgba(0, 0, 0, .25);
+    padding: 8px 16px 16px;
+    display: none;
+  }
+  .menu.ouvert { display: flex; }
+  .menu a { padding: 12px 12px; font-size: 16px; }
+  /* Sur mobile, tout est listé directement */
+  .menu__accueil { display: block; }
+  .menu__bouton-plus { display: none; }
+  .sous-menu {
+    position: static; opacity: 1; visibility: visible; transform: none;
+    border: 0; box-shadow: none; padding: 0; min-width: 0;
+  }
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .lecteur, .a-l-antenne { max-width: none; }
+  .grille--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fiche__grille { grid-template-columns: 280px 1fr; gap: 32px; }
+  .contact { grid-template-columns: 1fr; gap: 28px; }
+  .apropos { grid-template-columns: 1fr 1fr; }
+  .pied__grille { grid-template-columns: 1fr 1fr; }
+  .pied__marque { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .grille--4 { gap: 14px; }
+  .grille--3 { grid-template-columns: 1fr; }
+  .a-l-antenne { grid-template-columns: 1fr; }
+  .evenement { grid-template-columns: 70px 1fr; }
+  .evenement__image { display: none; }
+  .fiche__grille { grid-template-columns: 1fr; }
+  .fiche__photo { max-width: 320px; }
+  .objectifs, .apropos { grid-template-columns: 1fr; }
+  .section { padding: 48px 0; }
+}
+
+@media (max-width: 560px) {
+  .conteneur { padding: 0 16px; }
+  .accueil { padding: 18px 0 32px; }
+  .accueil > .conteneur { padding: 0; }
+  .accueil__tete, .a-l-antenne { padding: 0 16px; }
+  .lecteur { border-radius: 0; box-shadow: none; }
+  .commandes { padding: 30px 4px 2px; }
+  .cmd { width: 40px; height: 40px; }
+  .cmd svg { width: 22px; height: 22px; }
+  .volume input { display: none; }
+  .lecteur__son { font-size: 13px; padding: 7px 12px; top: 10px; left: 10px; }
+  .grille--4 { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .carte__corps { padding: 12px 12px 14px; }
+  .carte--clip .carte__titre, .carte__titre { font-size: 15px; }
+  .bouton--petit { padding: 7px 10px; font-size: 12.5px; }
+  .pied__grille { grid-template-columns: 1fr; gap: 28px; }
+  .bandeau { padding: 36px 0 32px; }
+}
+
+/* =========================================================
+   EFFETS ET ANIMATIONS
+   Discrets, légers (CSS uniquement) et coupés automatiquement
+   si le visiteur a demandé de réduire les animations.
+   ========================================================= */
+
+/* ---------- Égaliseur (près de LIVE et « En ce moment ») ---------- */
+.egaliseur { display: inline-flex; align-items: flex-end; gap: 2px; width: 14px; height: 12px; flex-shrink: 0; }
+.egaliseur i {
+  flex: 1; height: 100%; border-radius: 1px; background: var(--live);
+  transform-origin: bottom; transform: scaleY(.35);
+  animation: egaliseur 1s ease-in-out infinite;
+}
+.egaliseur i:nth-child(2) { animation-delay: -.35s; animation-duration: .85s; }
+.egaliseur i:nth-child(3) { animation-delay: -.6s; animation-duration: 1.15s; }
+.egaliseur i:nth-child(4) { animation-delay: -.15s; animation-duration: .95s; }
+.egaliseur--vert i { background: var(--vert); }
+@keyframes egaliseur {
+  0%, 100% { transform: scaleY(.3); }
+  50% { transform: scaleY(1); }
+}
+/* En pause ou en retard sur le direct : l'égaliseur s'arrête et passe en gris */
+.lecteur.en-pause .egaliseur i, .cmd-live.decale .egaliseur i { animation-play-state: paused; background: #9a9a9a; }
+
+/* ---------- Prise d'antenne du lecteur ---------- */
+.accueil .lecteur { animation: priseAntenne .8s cubic-bezier(.2, .7, .2, 1) both; }
+.accueil__tete { animation: monte .7s cubic-bezier(.2, .7, .2, 1) both; }
+.a-l-antenne { animation: monte .7s .25s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes priseAntenne {
+  from { opacity: 0; transform: scale(.965); filter: brightness(1.8); }
+  60% { filter: brightness(1); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes monte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Bandeau défilant façon télé ---------- */
+.defilant {
+  overflow: hidden;
+  background: var(--defilant-fond);
+  color: var(--defilant-texte);
+  border-block: 3px solid var(--defilant-bord);
+  padding: 12px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.defilant__piste { display: flex; width: max-content; animation: defile 38s linear infinite; }
+.defilant__groupe { display: flex; align-items: center; flex-shrink: 0; }
+.defilant__mot {
+  font-family: var(--police-titre); font-size: 22px; line-height: 1.1; letter-spacing: .02em;
+  text-transform: uppercase; padding: 0 22px; white-space: nowrap;
+}
+.defilant__mot--fort { color: var(--defilant-fort); }
+.defilant__sep { color: var(--defilant-fort); font-size: 12px; }
+@keyframes defile { to { transform: translateX(-50%); } }
+
+/* ---------- Apparition au défilement ----------
+   La classe .anim est posée par theme.js : sans JavaScript, tout reste visible. */
+.anim .a-reveler { opacity: 0; transform: translateY(26px); }
+.anim .a-reveler.visible {
+  opacity: 1; transform: none;
+  transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1);
+  transition-delay: var(--delai, 0s);
+}
+
+/* ---------- Lueur verte au survol des cartes ---------- */
+.carte { transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition); }
+.carte:hover {
+  border-color: var(--vert);
+  box-shadow: 0 0 0 1px var(--vert), 0 22px 44px -20px rgba(102, 179, 47, .55);
+}
+.carte__media::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(43, 45, 41, .45), transparent 55%);
+  opacity: 0; transition: opacity var(--transition);
+}
+.carte:hover .carte__media::after { opacity: 1; }
+.carte__lecture { z-index: 1; box-shadow: 0 0 0 0 rgba(215, 242, 92, .6); }
+.carte:hover .carte__lecture { animation: halo 1.4s ease-out infinite; }
+@keyframes halo { to { box-shadow: 0 0 0 14px rgba(215, 242, 92, 0); } }
+
+/* ---------- Reflet lumineux sur les boutons ---------- */
+.bouton, .bouton-direct { position: relative; overflow: hidden; isolation: isolate; }
+.bouton::after, .bouton-direct::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; z-index: -1;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .65), transparent);
+  transform: skewX(-20deg); transition: left .6s ease;
+}
+.bouton-direct::after { background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .22), transparent); }
+.bouton:hover::after, .bouton-direct:hover::after { left: 130%; }
+.bouton--inactif::after, .bouton--contour::after { display: none; }
+
+/* ---------- Réduire les animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .anim .a-reveler { opacity: 1; transform: none; }
+  .defilant__piste { animation: none; }
+  .egaliseur i { animation: none; transform: scaleY(.7); }
+}
+
+/* =========================================================
+   STRUCTURE STREAMING (inspirée des applis de TV en ligne)
+   Menu en pilule, carrousel À la une, rangées défilantes, Top 10
+   ========================================================= */
+
+/* ---------- Menu en pilule avec icônes (ordinateur) ---------- */
+@media (min-width: 961px) {
+  .menu {
+    background: rgba(255, 255, 255, .07); border-radius: 999px; padding: 4px; gap: 2px;
+    margin-left: auto; margin-right: auto;
+  }
+  .menu > a, .menu__bouton-plus {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px; font-size: 14px;
+  }
+  .menu > a svg, .menu__bouton-plus svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+  .menu > a:hover, .menu__bouton-plus:hover { background: var(--teinte-nav); color: var(--texte); }
+  .menu > a.actif { background: var(--teinte-nav); color: var(--accent); box-shadow: inset 0 0 0 1px rgba(140, 203, 90, .35); }
+  .menu__bouton-plus .menu__fleche { width: 16px; height: 16px; margin-left: -4px; }
+  .entete__barre { gap: 16px; }
+}
+@media (max-width: 960px) {
+  .menu > a { display: flex; align-items: center; gap: 12px; }
+  .menu > a svg { width: 20px; height: 20px; fill: var(--accent); }
+  .menu__ico-plus { display: none; }
+}
+@media (max-width: 1180px) and (min-width: 961px) {
+  .menu > a, .menu__bouton-plus { padding: 8px 10px; }
+  .menu > a svg, .menu__ico-plus { display: none; }
+}
+
+/* ---------- Carrousel À la une ---------- */
+.une { padding: 40px 0 8px; }
+.une__cadre { position: relative; border-radius: 18px; overflow: hidden; background: var(--anthracite); }
+.une__piste {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.une__piste::-webkit-scrollbar { display: none; }
+.une__diapo { position: relative; flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: 16 / 7; min-height: 300px; }
+.une__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.une__diapo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(20, 21, 19, .85) 0%, rgba(20, 21, 19, .45) 45%, transparent 75%);
+}
+.une__texte {
+  position: absolute; z-index: 1; left: 0; bottom: 0; top: 0;
+  display: flex; flex-direction: column; justify-content: center; gap: 10px; align-items: flex-start;
+  padding: 32px clamp(24px, 5vw, 64px); max-width: 620px; color: #fff;
+}
+.une__sur { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--citron); }
+.une__titre { font-family: var(--police-titre); font-weight: 400; font-size: clamp(30px, 4vw, 54px); line-height: 1.05; letter-spacing: 0; }
+.une__mots { font-weight: 600; font-size: 14px; color: #E9ECE4; }
+.une__desc { font-size: 15px; color: #D5D8CF; max-width: 460px; }
+.une__texte .bouton { margin-top: 6px; }
+
+.une__fleche {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%; border: 0;
+  background: rgba(255, 255, 255, .9); color: var(--anthracite);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, .5);
+  opacity: 0; transition: opacity var(--transition), background var(--transition);
+}
+.une__fleche svg { width: 26px; height: 26px; fill: currentColor; }
+.une__fleche:hover { background: #fff; }
+.une__fleche--prec { left: 14px; }
+.une__fleche--suiv { right: 14px; }
+.une__cadre:hover .une__fleche, .une__fleche:focus-visible { opacity: 1; }
+.une__points { position: absolute; z-index: 2; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; }
+.une__points button {
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px;
+  background: rgba(255, 255, 255, .5); transition: width var(--transition), background var(--transition);
+}
+.une__points button[aria-current="true"] { width: 26px; background: var(--citron); }
+
+/* ---------- Rangées défilantes ---------- */
+.rangee { padding: 30px 0 8px; }
+.rangee:last-of-type { padding-bottom: 56px; }
+.rangee__tete { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.rangee__titre { font-family: var(--police-titre); font-size: clamp(20px, 2vw, 26px); font-weight: 400; line-height: 1.2; }
+.rangee__actions { display: flex; align-items: center; gap: 6px; }
+.rangee__fleche {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--bordure); background: var(--surface); color: var(--texte);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background var(--transition), opacity var(--transition);
+}
+.rangee__fleche svg { width: 22px; height: 22px; fill: currentColor; }
+.rangee__fleche:hover:not(:disabled) { background: var(--teinte); }
+.rangee__fleche:disabled { opacity: .35; cursor: default; }
+.rangee__voir { font-weight: 700; font-size: 14px; color: var(--accent); margin-left: 8px; white-space: nowrap; }
+.rangee__voir:hover { text-decoration: underline; }
+
+/* La piste s'aligne sur la grille du site mais déborde jusqu'au bord de l'écran */
+.rangee__piste {
+  --marge: max(var(--gouttiere), calc((100vw - var(--largeur-site)) / 2 + var(--gouttiere)));
+  display: flex; gap: 16px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: var(--marge);
+  padding: 4px var(--marge) 18px;
+  scrollbar-width: none;
+}
+.rangee__piste::-webkit-scrollbar { display: none; }
+.rangee__piste > * { scroll-snap-align: start; flex: 0 0 var(--largeur, 280px); }
+.rangee__piste:focus-visible { outline-offset: -3px; }
+.rangee--clips { --largeur: 290px; }
+.rangee--programmes { --largeur: 330px; }
+.rangee--artistes { --largeur: 190px; }
+.rangee--actus { --largeur: 320px; }
+.rangee--top { --largeur: 250px; }
+
+/* Cartes plus légères dans les rangées : plus d'image, moins de cadre */
+.rangee .carte { border: 0; background: transparent; border-radius: 0; overflow: visible; }
+.rangee .carte:hover { box-shadow: none; transform: none; }
+.rangee .carte__media { border-radius: 12px; overflow: hidden; transition: box-shadow var(--transition); }
+.rangee .carte:hover .carte__media { box-shadow: 0 0 0 2px var(--vert), 0 16px 30px -18px rgba(102, 179, 47, .7); }
+.rangee .carte__corps { padding: 10px 2px 0; gap: 4px; }
+.rangee .carte__texte { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rangee .carte__infos { border-top: 0; padding-top: 2px; margin-top: 2px; }
+.rangee--artistes .carte__media--portrait { border-radius: 50%; aspect-ratio: 1; }
+.rangee--artistes .carte__corps { text-align: center; align-items: center; }
+
+/* ---------- Top 10 avec grands numéros ---------- */
+.carte-top { position: relative; display: flex; align-items: flex-end; }
+.carte-top__lien { position: relative; z-index: 1; display: block; width: 100%; }
+.carte-top__media { aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; background: var(--teinte); transition: box-shadow var(--transition); }
+.carte-top__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.carte-top:hover .carte-top__media { box-shadow: 0 0 0 2px var(--vert), 0 16px 30px -18px rgba(102, 179, 47, .7); }
+.carte-top:hover .carte-top__media img { transform: scale(1.04); }
+.carte-top__titre { font-weight: 700; font-size: 15px; margin-top: 8px; line-height: 1.3; }
+.carte-top__artiste { font-size: 13px; color: var(--texte-doux); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  .une { padding-top: 24px; }
+  .une > .conteneur { padding: 0; }
+  .une__cadre { border-radius: 0; }
+  .une__diapo { aspect-ratio: 4 / 5; min-height: 0; max-height: 520px; }
+  .une__diapo::after { background: linear-gradient(0deg, rgba(20, 21, 19, .9) 0%, rgba(20, 21, 19, .4) 50%, transparent 80%); }
+  .une__texte { justify-content: flex-end; padding: 24px 20px 46px; }
+  .une__fleche { display: none; }
+  .rangee__fleche { display: none; }
+  .rangee__piste { --marge: 16px; gap: 12px; }
+  .rangee--clips { --largeur: 240px; }
+  .rangee--programmes { --largeur: 270px; }
+  .rangee--artistes { --largeur: 140px; }
+  .rangee--actus { --largeur: 260px; }
+  .rangee--top { --largeur: 200px; }
+}
+
+/* =========================================================
+   TYPOGRAPHIE : titres en Bebas Neue (comme au départ), textes en Montserrat
+   ========================================================= */
+.titre-section, .accueil__titre, .bandeau__titre, .une__titre, .fiche__nom,
+.lecteur__message-titre, .a-l-antenne__titre, .evenement__date span,
+.apropos__icone, .page-erreur__code, .defilant__mot {
+  font-family: var(--police-titre);
+  font-weight: 400;
+}
+.titre-section { font-size: clamp(34px, 3.6vw, 46px); line-height: 1.02; letter-spacing: .01em; }
+.accueil__titre { font-size: clamp(38px, 4.6vw, 62px); line-height: 1; letter-spacing: .01em; }
+.bandeau__titre { font-size: clamp(44px, 6vw, 76px); line-height: .98; letter-spacing: .01em; }
+.une__titre { font-size: clamp(40px, 5.5vw, 72px); line-height: .95; letter-spacing: .01em; }
+.fiche__nom { font-size: clamp(46px, 6vw, 80px); line-height: 1; }
+.lecteur__message-titre { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.1; letter-spacing: .02em; }
+.a-l-antenne__titre { font-size: 30px; line-height: 1.05; }
+.evenement__date span { font-size: 40px; }
+.apropos__icone { font-size: 40px; }
+.page-erreur__code { font-size: 120px; }
+.defilant__mot { font-size: 30px; line-height: 1; letter-spacing: .04em; }
+/* Les titres des rangées restent en Montserrat gras, comme à l origine */
+.rangee__titre { font-family: var(--police); font-weight: 800; font-size: clamp(20px, 2.2vw, 26px); letter-spacing: 0; }
+
+/* =========================================================
+   LECTEUR : bouton Agrandir (mode cinéma, comme YouTube)
+   ========================================================= */
+.cmd--cinema .ico-reduire { display: none; }
+.accueil.cinema .cmd--cinema .ico-agrandir { display: none; }
+.accueil.cinema .cmd--cinema .ico-reduire { display: block; }
+
+.accueil.cinema { padding-top: 0; }
+.accueil.cinema > .conteneur { max-width: none; padding: 0; }
+.accueil.cinema .accueil__tete { display: none; }
+.accueil.cinema .lecteur {
+  max-width: none; width: 100%;
+  aspect-ratio: auto;
+  height: min(56.25vw, calc(100vh - var(--entete) - 2px));
+  border-radius: 0; box-shadow: none; background: #000;
+}
+.accueil.cinema .a-l-antenne { max-width: none; padding-inline: var(--gouttiere); }
+/* Sur téléphone, le lecteur prend déjà toute la largeur : le plein écran suffit */
+@media (max-width: 720px) { .cmd--cinema { display: none; } }

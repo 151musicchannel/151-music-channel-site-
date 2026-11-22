@@ -1,0 +1,23 @@
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">Actualités musicales</p>
+    <h1 class="bandeau__titre">Actualités</h1>
+    <p class="bandeau__texte">Nouvelles sorties, interviews, événements, annonces de la chaîne et coulisses de l'industrie musicale.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <% if (actualites.length) { %>
+      <div class="grille grille--3">
+        <% actualites.forEach((article) => { %><%- include('../partials/carte-actu', { article }) %><% }) %>
+      </div>
+    <% } else { %>
+      <p class="vide">Les premières actualités arrivent bientôt.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

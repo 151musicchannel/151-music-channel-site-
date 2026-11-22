@@ -1,0 +1,41 @@
+[
+  {
+    "slug": "lancement-du-site-officiel",
+    "titre": "Lancement du site officiel de 151 Music Channel",
+    "date": "2026-11-18",
+    "categorie": "Annonce de la chaîne",
+    "image": "",
+    "artiste": "",
+    "resume": "151 Music Channel ouvre son site officiel : direct, émissions, clips et actualité musicale réunis au même endroit.",
+    "contenu": [
+      "151 Music Channel lance son site officiel. Les spectateurs du monde entier peuvent désormais suivre la chaîne en direct, découvrir ses émissions et retrouver les clips mis en avant.",
+      "Le site présente aussi l'actualité musicale, les artistes soutenus par la chaîne et les événements à venir."
+    ]
+  },
+  {
+    "slug": "exemple-nouvelle-sortie",
+    "titre": "Exemple d'actualité : une nouvelle sortie",
+    "date": "2026-11-10",
+    "categorie": "Nouvelle sortie",
+    "image": "",
+    "artiste": "artiste-exemple-1",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-interview",
+    "titre": "Exemple d'actualité : une interview",
+    "date": "2026-11-03",
+    "categorie": "Interview",
+    "image": "",
+    "artiste": "artiste-exemple-2",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  }
+]

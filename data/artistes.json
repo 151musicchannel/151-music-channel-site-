@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "artiste-exemple-1",
+    "nom": "Artiste exemple 1",
+    "photo": "",
+    "genre": "Afrobeat",
+    "aLaUne": true,
+    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
+    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
+  },
+  {
+    "slug": "artiste-exemple-2",
+    "nom": "Artiste exemple 2",
+    "photo": "",
+    "genre": "Coupé-décalé",
+    "aLaUne": true,
+    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
+    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
+  },
+  {
+    "slug": "artiste-exemple-3",
+    "nom": "Artiste exemple 3",
+    "photo": "",
+    "genre": "Gospel",
+    "aLaUne": true,
+    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
+    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
+  },
+  {
+    "slug": "artiste-exemple-4",
+    "nom": "Artiste exemple 4",
+    "photo": "",
+    "genre": "Rap",
+    "aLaUne": true,
+    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
+    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
+  }
+]

@@ -1,0 +1,33 @@
+# =========================================================
+# Mise en ligne automatique de 151 Music Channel
+# À chaque envoi (push) sur la branche main, GitHub se connecte
+# au serveur OVH et lance deploiement/mettre-a-jour.sh.
+#
+# Secrets à créer dans GitHub (Settings → Secrets and variables → Actions) :
+#   SERVEUR_HOTE  : 178.32.38.100
+#   SERVEUR_USER  : ubuntu
+#   SERVEUR_CLE   : la clé privée SSH dédiée au déploiement
+# =========================================================
+name: Mise en ligne
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # bouton « Run workflow » pour relancer à la main
+
+concurrency:
+  group: mise-en-ligne
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Mettre à jour le serveur
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVEUR_HOTE }}
+          username: ${{ secrets.SERVEUR_USER }}
+          key: ${{ secrets.SERVEUR_CLE }}
+          script: bash /var/www/151-music-channel/deploiement/mettre-a-jour.sh

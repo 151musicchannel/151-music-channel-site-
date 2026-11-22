@@ -1,0 +1,23 @@
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">À l'honneur</p>
+    <h1 class="bandeau__titre">Artistes</h1>
+    <p class="bandeau__texte">Les artistes présentés par 151 Music Channel : portraits, biographies, clips et actualités.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur">
+    <% if (artistes.length) { %>
+      <div class="grille grille--4">
+        <% artistes.forEach((artiste) => { %><%- include('../partials/carte-artiste', { artiste }) %><% }) %>
+      </div>
+    <% } else { %>
+      <p class="vide">Les artistes seront bientôt présentés ici.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

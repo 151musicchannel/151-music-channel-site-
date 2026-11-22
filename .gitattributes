@@ -1,0 +1,5 @@
+# Fins de ligne Linux partout (indispensable pour les scripts du serveur)
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.webp binary

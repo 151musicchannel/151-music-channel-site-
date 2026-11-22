@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect width="640" height="360" fill="#2B2D29"/>
+  <circle cx="544" cy="54" r="198" fill="#D7F25C" opacity=".18"/>
+  <circle cx="64" cy="342" r="126" fill="#D7F25C" opacity=".14"/>
+  <g transform="translate(320 180)" fill="#D7F25C"><circle r="34" fill-opacity=".25"/><path d="M-10 -16v32l26-16z"/></g>
+  <text x="320" y="317" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="25" letter-spacing="3" fill="#D7F25C" opacity=".85">CLIP</text>
+</svg>

@@ -1,0 +1,22 @@
+[
+  {
+    "titre": "Exemple d'événement : concert",
+    "type": "Concert",
+    "date": "2026-12-20",
+    "dateFin": "",
+    "lieu": "Lieu à préciser",
+    "image": "",
+    "description": "Description de l'événement. Cet événement est un exemple à remplacer.",
+    "lien": ""
+  },
+  {
+    "titre": "Exemple d'événement : festival",
+    "type": "Festival",
+    "date": "2027-02-14",
+    "dateFin": "2027-02-16",
+    "lieu": "Lieu à préciser",
+    "image": "",
+    "description": "Description de l'événement. Cet événement est un exemple à remplacer.",
+    "lien": ""
+  }
+]

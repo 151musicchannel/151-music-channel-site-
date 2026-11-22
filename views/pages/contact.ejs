@@ -1,0 +1,79 @@
+<% const c = site.contact; %>
+<%- include('../partials/debut') %>
+
+<section class="bandeau">
+  <div class="conteneur">
+    <p class="sur-titre">Nous écrire</p>
+    <h1 class="bandeau__titre">Contact</h1>
+    <p class="bandeau__texte">Une question, une proposition de partenariat, une demande presse ou artiste ? L'équipe de 151 Music Channel vous répond.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="conteneur contact">
+    <aside class="contact__infos">
+      <h2 class="apropos__titre">Coordonnées</h2>
+      <dl>
+        <% if (c.email) { %><dt>E-mail</dt><dd><a href="mailto:<%= c.email %>"><%= c.email %></a></dd><% } %>
+        <% if (c.telephone) { %><dt>Téléphone</dt><dd><a href="tel:<%= c.telephone.replace(/\s/g, '') %>"><%= c.telephone %></a></dd><% } %>
+        <% if (c.adresse) { %><dt>Adresse</dt><dd><%= c.adresse %></dd><% } %>
+        <% if (c.horaires) { %><dt>Horaires</dt><dd><%= c.horaires %></dd><% } %>
+      </dl>
+      <% if (!c.email && !c.telephone && !c.adresse) { %><p class="vide">Les coordonnées officielles seront publiées prochainement. Utilisez le formulaire pour nous écrire.</p><% } %>
+    </aside>
+
+    <div class="contact__formulaire">
+      <% if (envoye) { %>
+        <div class="alerte alerte--succes" role="status">
+          <strong>Message envoyé.</strong> Merci, l'équipe de 151 Music Channel vous répondra dès que possible.
+        </div>
+      <% } %>
+      <% if (erreurEnvoi) { %>
+        <div class="alerte alerte--erreur" role="alert">Votre message n'a pas pu être envoyé. Réessayez dans quelques minutes.</div>
+      <% } %>
+      <% if (erreurs.global) { %>
+        <div class="alerte alerte--erreur" role="alert"><%= erreurs.global %></div>
+      <% } else if (Object.keys(erreurs).length) { %>
+        <div class="alerte alerte--erreur" role="alert">Corrigez les champs indiqués ci-dessous.</div>
+      <% } %>
+
+      <form method="post" action="/contact" class="formulaire" id="formContact" novalidate>
+        <input type="hidden" name="jeton" value="<%= jeton %>">
+        <!-- Champ piège anti-robots : invisible pour les visiteurs -->
+        <div class="piege" aria-hidden="true">
+          <label for="site_web">Ne pas remplir ce champ</label>
+          <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="champ<%= erreurs.nom ? ' champ--erreur' : '' %>">
+          <label for="nom">Nom</label>
+          <input id="nom" name="nom" type="text" required minlength="2" maxlength="100" autocomplete="name" value="<%= valeurs.nom || '' %>"<% if (erreurs.nom) { %> aria-invalid="true" aria-describedby="err-nom"<% } %>>
+          <p class="champ__erreur" id="err-nom"><%= erreurs.nom || '' %></p>
+        </div>
+
+        <div class="champ<%= erreurs.email ? ' champ--erreur' : '' %>">
+          <label for="email">Adresse e-mail</label>
+          <input id="email" name="email" type="email" required maxlength="150" autocomplete="email" value="<%= valeurs.email || '' %>"<% if (erreurs.email) { %> aria-invalid="true" aria-describedby="err-email"<% } %>>
+          <p class="champ__erreur" id="err-email"><%= erreurs.email || '' %></p>
+        </div>
+
+        <div class="champ<%= erreurs.sujet ? ' champ--erreur' : '' %>">
+          <label for="sujet">Sujet</label>
+          <input id="sujet" name="sujet" type="text" required minlength="3" maxlength="150" value="<%= valeurs.sujet || '' %>"<% if (erreurs.sujet) { %> aria-invalid="true" aria-describedby="err-sujet"<% } %>>
+          <p class="champ__erreur" id="err-sujet"><%= erreurs.sujet || '' %></p>
+        </div>
+
+        <div class="champ<%= erreurs.message ? ' champ--erreur' : '' %>">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="7" required minlength="10" maxlength="5000"<% if (erreurs.message) { %> aria-invalid="true" aria-describedby="err-message"<% } %>><%= valeurs.message || '' %></textarea>
+          <p class="champ__erreur" id="err-message"><%= erreurs.message || '' %></p>
+        </div>
+
+        <p class="formulaire__note">Vos informations servent uniquement à répondre à votre message. <a href="/mentions-legales#confidentialite">En savoir plus</a>.</p>
+        <button type="submit" class="bouton">Envoyer le message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/fin') %>

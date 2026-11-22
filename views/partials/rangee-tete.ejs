@@ -1,0 +1,12 @@
+<div class="conteneur rangee__tete">
+  <h2 class="rangee__titre" id="<%= id %>"><%= titre %></h2>
+  <div class="rangee__actions">
+    <button type="button" class="rangee__fleche" data-sens="-1" aria-label="Précédent" disabled>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>
+    </button>
+    <button type="button" class="rangee__fleche" data-sens="1" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg>
+    </button>
+    <% if (typeof lien !== 'undefined' && lien) { %><a class="rangee__voir" href="<%= lien %>">Voir plus</a><% } %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect width="640" height="360" fill="#262823"/>
+  <circle cx="544" cy="54" r="198" fill="#F3F5EF" opacity=".10"/>
+  <circle cx="64" cy="342" r="126" fill="#F3F5EF" opacity=".08"/>
+  <g transform="translate(320 180)" fill="#F3F5EF"><path transform="translate(-30 -42) scale(2.6)" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></g>
+  <text x="320" y="317" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="25" letter-spacing="3" fill="#F3F5EF" opacity=".85">ACTUALITÉ</text>
+</svg>

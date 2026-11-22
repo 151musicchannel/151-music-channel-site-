@@ -1,0 +1,33 @@
+# =========================================================
+# Caddy : HTTPS automatique (certificat Let's Encrypt gratuit)
+# À copier sur le serveur dans /etc/caddy/Caddyfile
+# Remplacer VOTRE-DOMAINE.com par le vrai nom de domaine (2 endroits).
+# =========================================================
+
+www.VOTRE-DOMAINE.com {
+	redir https://VOTRE-DOMAINE.com{uri} permanent
+}
+
+VOTRE-DOMAINE.com {
+	encode zstd gzip
+
+	# Le direct (fichiers HLS produits par le récepteur vMix) :
+	# servis directement par Caddy, plus rapide que Node.
+	handle_path /direct/* {
+		root * /var/www/151-music-channel/storage/direct
+		@liste path *.m3u8
+		header @liste Cache-Control "no-cache"
+		@morceaux path *.ts
+		header @morceaux Cache-Control "public, max-age=60"
+		file_server
+	}
+
+	# Tout le reste : le site Node.js
+	handle {
+		reverse_proxy 127.0.0.1:8151
+	}
+
+	log {
+		output file /var/log/caddy/151.log
+	}
+}

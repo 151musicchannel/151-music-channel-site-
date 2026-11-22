@@ -1,0 +1,39 @@
+<%- include('../partials/debut') %>
+
+<section class="fiche">
+  <div class="conteneur fiche__grille">
+    <img class="fiche__photo" src="<%= aide.image(artiste.photo, 'artiste') %>" alt="Photo de <%= artiste.nom %>" width="400" height="500">
+    <div>
+      <nav class="fil" aria-label="Fil d'Ariane"><a href="/artistes">Artistes</a> <span aria-hidden="true">/</span> <span><%= artiste.nom %></span></nav>
+      <% if (artiste.genre) { %><p class="etiquette"><%= artiste.genre %></p><% } %>
+      <h1 class="fiche__nom"><%= artiste.nom %></h1>
+      <p class="fiche__presentation"><%= artiste.presentation %></p>
+      <h2 class="fiche__sous-titre">Biographie</h2>
+      <p class="fiche__bio"><%= artiste.biographie %></p>
+    </div>
+  </div>
+</section>
+
+<% if (clips.length) { %>
+<section class="section section--teinte" aria-labelledby="titreClipsArtiste">
+  <div class="conteneur">
+    <h2 class="titre-section" id="titreClipsArtiste">Ses clips</h2>
+    <div class="grille grille--4">
+      <% clips.forEach((clip) => { %><%- include('../partials/carte-clip', { clip }) %><% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<% if (actualites.length) { %>
+<section class="section" aria-labelledby="titreActusArtiste">
+  <div class="conteneur">
+    <h2 class="titre-section" id="titreActusArtiste">Actualités</h2>
+    <div class="grille grille--3">
+      <% actualites.forEach((article) => { %><%- include('../partials/carte-actu', { article }) %><% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<%- include('../partials/fin') %>

@@ -1,0 +1,18 @@
+<article class="carte carte--programme" id="<%= programme.slug %>">
+  <div class="carte__media">
+    <img src="<%= aide.image(programme.image, 'programme') %>" alt="<%= programme.titre %>" loading="lazy" width="640" height="360">
+    <% if (programme.frequence) { %><span class="carte__badge"><%= programme.frequence %></span><% } %>
+  </div>
+  <div class="carte__corps">
+    <h3 class="carte__titre"><%= programme.titre %></h3>
+    <p class="carte__texte"><%= programme.description %></p>
+    <ul class="carte__infos">
+      <% aide.horaires(programme).forEach((h) => { %>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg><%= h %></li>
+      <% }) %>
+      <% if (programme.presentateur) { %>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.7 0-8 1.3-8 4v2h16v-2c0-2.7-5.3-4-8-4z"/></svg>Présenté par <%= programme.presentateur %></li>
+      <% } %>
+    </ul>
+  </div>
+</article>
