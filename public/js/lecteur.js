@@ -130,24 +130,42 @@
      Chaque navigateur a sa méthode : on essaie dans l'ordre, et si l'une
      est refusée on passe à la suivante (au lieu d'échouer sans rien dire). */
   const elementPleinEcran = () => document.fullscreenElement || document.webkitFullscreenElement;
+  /* Dernier recours : si le navigateur refuse le vrai plein écran (navigateurs
+     intégrés aux applis, cadres sécurisés…), le lecteur couvre toute la fenêtre. */
+  function fauxPleinEcran(actif) {
+    lecteur.classList.toggle("faux-plein-ecran", actif);
+    lecteur.classList.toggle("plein-ecran", actif);
+    document.documentElement.classList.toggle("lecteur-ouvert", actif);
+    $("btnPleinEcran").setAttribute("aria-label", actif ? "Quitter le plein écran" : "Plein écran");
+    reveiller();
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lecteur.classList.contains("faux-plein-ecran")) fauxPleinEcran(false);
+  });
+
   function pleinEcran() {
+    if (lecteur.classList.contains("faux-plein-ecran")) { fauxPleinEcran(false); return; }
     if (elementPleinEcran()) {
       (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       return;
     }
-    const essais = [
-      () => lecteur.requestFullscreen && lecteur.requestFullscreen({ navigationUI: "hide" }), // Chrome, Edge, Firefox, Android
-      () => !lecteur.requestFullscreen && lecteur.webkitRequestFullscreen && (lecteur.webkitRequestFullscreen(), true), // anciens Safari / Samsung
-      () => video.requestFullscreen && video.requestFullscreen(),                              // la vidéo seule
-      () => video.webkitEnterFullscreen && (video.webkitEnterFullscreen(), true),             // iPhone
-    ];
-    (function essayer(i) {
-      if (i >= essais.length) return;
-      let resultat;
-      try { resultat = essais[i](); } catch (e) { return essayer(i + 1); }
-      if (resultat === undefined || resultat === false) return essayer(i + 1);
-      if (resultat && typeof resultat.catch === "function") resultat.catch(() => essayer(i + 1));
-    })(0);
+    // iPhone : seul le plein écran natif de la vidéo existe
+    if (!lecteur.requestFullscreen && !lecteur.webkitRequestFullscreen && video.webkitEnterFullscreen) {
+      try { video.webkitEnterFullscreen(); return; } catch (e) { fauxPleinEcran(true); return; }
+    }
+    // Les autres : on demande le vrai plein écran, puis on vérifie qu'il a bien été accordé.
+    // S'il est refusé, ou si le navigateur ne répond pas, on bascule sur le plein écran de secours.
+    let regle = false;
+    const secours = () => { if (!regle) { regle = true; if (!elementPleinEcran()) fauxPleinEcran(true); } };
+    try {
+      const demande = lecteur.requestFullscreen
+        ? lecteur.requestFullscreen({ navigationUI: "hide" })
+        : lecteur.webkitRequestFullscreen();
+      if (demande && typeof demande.then === "function") {
+        demande.then(() => { regle = true; }, secours);
+      }
+    } catch (e) { secours(); return; }
+    setTimeout(secours, 600);
   }
   // L'icône change quand on entre ou sort du plein écran (y compris avec la touche Échap)
   ["fullscreenchange", "webkitfullscreenchange"].forEach((ev) =>
