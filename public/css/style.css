@@ -853,7 +853,7 @@ html { scroll-padding-top: calc(var(--entete) + 16px); }
   font-weight: 400;
 }
 .titre-section { font-size: clamp(34px, 3.6vw, 46px); line-height: 1.02; letter-spacing: .01em; }
-.accueil__titre { font-size: clamp(38px, 4.6vw, 62px); line-height: 1; letter-spacing: .01em; }
+.accueil__titre { font-size: clamp(26px, 2.8vw, 38px); line-height: 1; letter-spacing: .02em; }
 .bandeau__titre { font-size: clamp(44px, 6vw, 76px); line-height: .98; letter-spacing: .01em; }
 .une__titre { font-size: clamp(40px, 5.5vw, 72px); line-height: .95; letter-spacing: .01em; }
 .fiche__nom { font-size: clamp(46px, 6vw, 80px); line-height: 1; }
