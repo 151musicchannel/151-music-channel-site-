@@ -160,14 +160,6 @@
 </section>
 <% } %>
 
-<% if (top10.length) { %>
-<section class="rangee rangee--top" aria-labelledby="rgTop">
-  <%- include('../partials/rangee-tete', { id: 'rgTop', titre: 'Top 10 151', lien: '/clips' }) %>
-  <div class="rangee__piste" tabindex="0" aria-label="Top 10, faire défiler">
-    <% top10.forEach((clip, i) => { %><%- include('../partials/carte-top', { clip, rang: i + 1 }) %><% }) %>
-  </div>
-</section>
-<% } %>
 
 <% if (programmes.length) { %>
 <section class="rangee rangee--programmes" aria-labelledby="rgProgrammes">

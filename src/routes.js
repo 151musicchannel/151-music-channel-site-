@@ -24,8 +24,6 @@ router.get("/", (req, res) => {
     libelleSuivant: grille.libelleCreneau(suivant, jour),
     aLaUne: contenu.aLaUne(),
     clips: contenu.clips().slice(0, 12),
-    // Top 10 : l'ordre du fichier clips.json fait le classement
-    top10: contenu.clips().slice(0, 10),
     programmes,
     actualites: contenu.actualites().slice(0, 8),
     artistes: contenu.artistes().filter((a) => a.aLaUne).slice(0, 12),

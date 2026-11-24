@@ -917,3 +917,20 @@ html { scroll-padding-top: calc(var(--entete) + 16px); }
   animation: none;
 }
 html.lecteur-ouvert, html.lecteur-ouvert body { overflow: hidden; }
+
+/* =========================================================
+   ESPACEMENT DE L'ACCUEIL : 20 px entre chaque bloc
+   (lecteur, « À suivre », bande défilante, À la une, rangées)
+   et 20 px entre les cartes
+   ========================================================= */
+.accueil { padding-bottom: 20px; }
+.a-l-antenne { margin-top: 20px; }
+.une { padding: 20px 0 0; }
+.rangee { padding: 20px 0 0; }
+.rangee:last-of-type { padding-bottom: 40px; }
+.rangee__piste { gap: 20px; padding-bottom: 0; }
+.rangee__tete { margin-bottom: 16px; } /* + 4 px de marge de la piste = 20 px */
+.grille { gap: 20px; }
+@media (max-width: 720px) {
+  .rangee__piste { gap: 20px; }
+}
