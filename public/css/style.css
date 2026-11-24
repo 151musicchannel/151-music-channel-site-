@@ -934,3 +934,16 @@ html.lecteur-ouvert, html.lecteur-ouvert body { overflow: hidden; }
 @media (max-width: 720px) {
   .rangee__piste { gap: 20px; }
 }
+
+/* ---------- À la une : visuel qui contient déjà son texte ---------- */
+/* Sur ordinateur et tablette : l'image seule, sans voile ni texte par-dessus, entièrement cliquable */
+.une__diapo--visuel::after { display: none; }
+.une__diapo--visuel .une__texte { display: none; }
+.une__lien-visuel { position: absolute; inset: 0; z-index: 1; }
+.une__lien-visuel:focus-visible { outline: 3px solid var(--citron); outline-offset: -3px; }
+/* Sur téléphone, le visuel est recadré sur la personne et le texte du site réapparaît */
+@media (max-width: 720px) {
+  .une__diapo--visuel .une__image { object-position: 90% center; }
+  .une__diapo--visuel::after { display: block; }
+  .une__diapo--visuel .une__texte { display: flex; z-index: 2; }
+}

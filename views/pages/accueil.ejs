@@ -124,8 +124,12 @@
     <div class="une__cadre">
       <div class="une__piste" id="unePiste">
         <% aLaUne.forEach((d, i) => { %>
-        <article class="une__diapo" id="une-<%= i %>" aria-roledescription="diapositive" aria-label="<%= i + 1 %> sur <%= aLaUne.length %>">
-          <img class="une__image" src="<%= aide.image(d.image, 'programme') %>" alt="" <%= i ? 'loading="lazy"' : '' %> width="1280" height="560">
+        <article class="une__diapo<%= d.imageAvecTexte ? ' une__diapo--visuel' : '' %>" id="une-<%= i %>" aria-roledescription="diapositive" aria-label="<%= i + 1 %> sur <%= aLaUne.length %>">
+          <img class="une__image" src="<%= aide.image(d.image, 'programme') %>" alt="<%= d.imageAvecTexte ? (d.alt || d.titre) : '' %>" <%= i ? 'loading="lazy"' : '' %> width="1920" height="840">
+          <% if (d.imageAvecTexte) { %>
+          <%# Visuel qui contient déjà son texte : toute l'image est cliquable, le texte du site n'est montré que sur téléphone %>
+          <a class="une__lien-visuel" href="<%= d.lien %>" aria-label="<%= d.titre %> : <%= d.bouton || 'Découvrir' %>"></a>
+          <% } %>
           <div class="une__texte">
             <p class="une__sur">À la une</p>
             <h2 class="une__titre"><%= d.titre %></h2>

@@ -1,15 +1,25 @@
 [
   {
     "titre": "Top 151",
-    "motsCles": ["Classement", "Hits", "Chaque samedi"],
+    "motsCles": [
+      "Classement",
+      "Hits",
+      "Chaque samedi"
+    ],
     "texte": "Les 10 clips les plus demandés de la semaine, du 10e au 1er.",
-    "image": "",
+    "image": "/images/une/top-151.jpg",
     "lien": "/programmes#top-151",
-    "bouton": "Découvrir l'émission"
+    "bouton": "Découvrir maintenant",
+    "imageAvecTexte": true,
+    "alt": "Top 151 : Zlatan, Perruzi, Shoday, Inferno. Les 10 clips les plus demandés de la semaine"
   },
   {
     "titre": "L'Invité 151",
-    "motsCles": ["Interview", "Live acoustique", "Vendredi 20h30"],
+    "motsCles": [
+      "Interview",
+      "Live acoustique",
+      "Vendredi 20h30"
+    ],
     "texte": "Un artiste s'installe sur le plateau pour se raconter et chanter en live.",
     "image": "",
     "lien": "/programmes#l-invite-151",
@@ -17,7 +27,11 @@
   },
   {
     "titre": "Exemple : nouvelle sortie",
-    "motsCles": ["Nouveauté", "Clip", "Exclusif"],
+    "motsCles": [
+      "Nouveauté",
+      "Clip",
+      "Exclusif"
+    ],
     "texte": "Diapositive d'exemple à remplacer par une vraie actualité de la chaîne.",
     "image": "",
     "lien": "/actualites/exemple-nouvelle-sortie",
@@ -25,7 +39,11 @@
   },
   {
     "titre": "Exemple : concert",
-    "motsCles": ["Événement", "Live", "Décembre"],
+    "motsCles": [
+      "Événement",
+      "Live",
+      "Décembre"
+    ],
     "texte": "Diapositive d'exemple à remplacer par un vrai événement.",
     "image": "",
     "lien": "/evenements",
