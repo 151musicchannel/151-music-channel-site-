@@ -37,5 +37,70 @@
       "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
       "Deuxième paragraphe de l'article."
     ]
+  },
+  {
+    "slug": "exemple-concert",
+    "titre": "Exemple d'actualité : un concert",
+    "date": "2026-10-27",
+    "categorie": "Événement",
+    "image": "",
+    "artiste": "artiste-exemple-3",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-clip",
+    "titre": "Exemple d'actualité : un nouveau clip",
+    "date": "2026-10-20",
+    "categorie": "Nouveau clip",
+    "image": "",
+    "artiste": "artiste-exemple-4",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-emission",
+    "titre": "Exemple d'actualité : une nouvelle émission",
+    "date": "2026-10-13",
+    "categorie": "Annonce de la chaîne",
+    "image": "",
+    "artiste": "",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-festival",
+    "titre": "Exemple d'actualité : un festival",
+    "date": "2026-10-06",
+    "categorie": "Événement",
+    "image": "",
+    "artiste": "",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-album",
+    "titre": "Exemple d'actualité : un album",
+    "date": "2026-09-29",
+    "categorie": "Nouvelle sortie",
+    "image": "",
+    "artiste": "artiste-exemple-5",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
   }
 ]

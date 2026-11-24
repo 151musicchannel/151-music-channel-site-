@@ -61,50 +61,5 @@
     "aLaUne": true,
     "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
     "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
-  },
-  {
-    "slug": "artiste-exemple-8",
-    "nom": "Artiste exemple 8",
-    "photo": "",
-    "genre": "Highlife",
-    "aLaUne": true,
-    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
-    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
-  },
-  {
-    "slug": "artiste-exemple-9",
-    "nom": "Artiste exemple 9",
-    "photo": "",
-    "genre": "Rumba",
-    "aLaUne": true,
-    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
-    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
-  },
-  {
-    "slug": "artiste-exemple-10",
-    "nom": "Artiste exemple 10",
-    "photo": "",
-    "genre": "R&B",
-    "aLaUne": true,
-    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
-    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
-  },
-  {
-    "slug": "artiste-exemple-11",
-    "nom": "Artiste exemple 11",
-    "photo": "",
-    "genre": "Reggae",
-    "aLaUne": true,
-    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
-    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
-  },
-  {
-    "slug": "artiste-exemple-12",
-    "nom": "Artiste exemple 12",
-    "photo": "",
-    "genre": "Ndombolo",
-    "aLaUne": true,
-    "presentation": "Courte présentation de l'artiste (une ou deux phrases).",
-    "biographie": "Biographie de l'artiste : parcours, débuts, albums, collaborations, récompenses. Ce texte est un exemple à remplacer."
   }
 ]
