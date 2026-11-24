@@ -102,5 +102,57 @@
       "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
       "Deuxième paragraphe de l'article."
     ]
+  },
+  {
+    "slug": "exemple-classement",
+    "titre": "Exemple d'actualité : un classement",
+    "date": "2026-09-22",
+    "categorie": "Classement",
+    "image": "",
+    "artiste": "",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-collaboration",
+    "titre": "Exemple d'actualité : une collaboration",
+    "date": "2026-09-15",
+    "categorie": "Nouvelle sortie",
+    "image": "",
+    "artiste": "artiste-exemple-6",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-coulisses",
+    "titre": "Exemple d'actualité : les coulisses d'un tournage",
+    "date": "2026-09-08",
+    "categorie": "Coulisses",
+    "image": "",
+    "artiste": "artiste-exemple-7",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
+  },
+  {
+    "slug": "exemple-tournee",
+    "titre": "Exemple d'actualité : une tournée",
+    "date": "2026-09-01",
+    "categorie": "Événement",
+    "image": "",
+    "artiste": "artiste-exemple-8",
+    "resume": "Résumé de l'article en une ou deux phrases. Cet article est un exemple à remplacer.",
+    "contenu": [
+      "Premier paragraphe de l'article. Cet article est un exemple à remplacer par une vraie actualité.",
+      "Deuxième paragraphe de l'article."
+    ]
   }
 ]

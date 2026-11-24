@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
     aLaUne: contenu.aLaUne(),
     clips: contenu.clips().slice(0, 12),
     programmes,
-    actualites: contenu.actualites().slice(0, 8),
+    actualites: contenu.actualites().slice(0, 12),
     artistes: contenu.artistes().filter((a) => a.aLaUne).slice(0, 12),
   });
 });
