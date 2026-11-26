@@ -79,8 +79,8 @@
     </div>
     <% } %>
 
-    <!-- Programme en cours / suivant -->
-    <% if (enCours || suivant) { %>
+    <!-- Programme en cours -->
+    <% if (enCours) { %>
     <div class="a-l-antenne">
       <% if (enCours) { %>
       <div class="a-l-antenne__bloc a-l-antenne__bloc--maintenant">
@@ -88,14 +88,6 @@
         <p class="a-l-antenne__titre"><%= enCours.programme.titre %></p>
         <p class="a-l-antenne__texte"><%= enCours.programme.description %></p>
         <p class="a-l-antenne__heure">Depuis <%= enCours.heure.replace(':', 'h') %> (<%= site.fuseauLibelle %>)</p>
-      </div>
-      <% } %>
-      <% if (suivant) { %>
-      <div class="a-l-antenne__bloc">
-        <p class="a-l-antenne__label">À suivre</p>
-        <p class="a-l-antenne__titre"><%= suivant.programme.titre %></p>
-        <p class="a-l-antenne__texte"><%= suivant.programme.description %></p>
-        <p class="a-l-antenne__heure"><%= libelleSuivant %> (<%= site.fuseauLibelle %>)</p>
       </div>
       <% } %>
     </div>
